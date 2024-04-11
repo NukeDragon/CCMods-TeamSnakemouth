@@ -57,7 +57,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                       action: new AAttack()
                       {
                         targetPlayer = false,
-                        damage = GetDmg(s, 2)
+                        damage = GetDmg(s, 2),
+                        whoDidThis = this.GetMeta().deck
                       }
                     ),
             new AStatus()
@@ -86,7 +87,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                       action: new AAttack()
                       {
                         targetPlayer = false,
-                        damage = GetDmg(s, 2)
+                        damage = GetDmg(s, 2),
+                        whoDidThis = this.GetMeta().deck
                       }
                     ),
             new AStatus()
@@ -115,7 +117,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                       action: new AAttack()
                       {
                         targetPlayer = false,
-                        damage = GetDmg(s, 2)
+                        damage = GetDmg(s, 2),
+                        whoDidThis = this.GetMeta().deck
                       }
                     ),
             new AStatus()
