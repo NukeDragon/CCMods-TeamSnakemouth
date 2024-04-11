@@ -1,0 +1,186 @@
+{
+  "character": {
+    "Vi": {
+      "name": "Vi",
+      "description": "<c=ffed2a>VI</c>\nAn arrogant explorer. Her cards are very aggressive, specializing in <c=keyword>multi-hit attacks</c> and <c=keyword>poison</c>."
+    },
+    "Leif": {
+      "name": "Leif",
+      "description": "<c=c6f1ff>LEIF</c>\nA cold explorer. His magic has strong effects, such as <c=keyword>freezing enemy ships</c>, but try not to <c=downside>freeze your own</c>."
+    },
+    "Kabbu": {
+      "name": "Kabbu",
+      "description": "<c=4a9b0f>KABBU</c>\nA noble explorer. His defensive cards specialize in <c=keyword>piercing attacks</c> and <c=keyword>managing TP</c>."
+    }
+  },
+  "artifact": {
+    "ExplorersPermit": {
+      "name": "EXPLORER'S PERMIT",
+      "description": "When you gain this artifact, gain <c=status>TP</c>. At the end of each zone, refill <c=status>TP</c> to your max.\nYou currently have <c=boldPink>{{current}}</c> out of <c=boldPink>{{max}}</c> <c=status>TP</c>",
+      "descriptionlogbook": "When you gain this artifact, gain <c=status>TP</c>. You cannot have more <c=status>TP</c> than your max. At the end of each zone, refill <c=status>TP</c> to your max.",
+      "descriptioncombat": "When you gain this artifact, gain <c=status>TP</c>. At the end of each zone, refill <c=status>TP</c> to your max.\nYour current max <c=status>TP</c> is <c=boldPink>{{max}}</c>"
+    },
+    "QueensPermit": {
+      "name": "QUEEN'S PERMIT",
+      "description": "Replaces <c=artifact>EXPLORER'S PERMIT</c>.\nAt the end of each zone, refill <c=status>TP</c> to your max.\nYou currently have <c=boldPink>{{current}}</c> out of <c=boldPink>{{max}}</c> <c=status>TP</c>",
+      "descriptionlogbook": "Replaces <c=artifact>EXPLORER'S PERMIT</c>.\nIncreases your Max <c=status>TP</c> by 15. At the end of each zone, refill <c=status>TP</c> to your max.",
+      "descriptioncombat": "Replaces <c=artifact>EXPLORER'S PERMIT</c>.\nAt the end of each zone, refill <c=status>TP</c> to your max.\nYour current max <c=status>TP</c> is <c=boldPink>{{max}}</c>"
+    },
+    "TardigradeShield": {
+      "name": "TARDIGRADE SHIELD",
+      "description": "At the start of combat, gain a <c=card>Sturdy</c>."
+    },
+    "Frostbite": {
+      "name": "FROSTBITE",
+      "description": "Attacks on <c=keyword>Frozen</c> parts will deal double damage instead of +1 damage."
+    },
+    "ExtraFreeze": {
+      "name": "EXTRA FREEZE",
+      "description": "Enemy <c=keyword>Frozen</c> parts will not thaw at the end of turn.\nAttacking enemy <c=keyword>Frozen</c> parts will <c=keyword>Stun</c> that part.\n<c=downside>Frozen parts will not stun intents at the end of turn.<c/>"
+    },
+    "PoisonAttacker": {
+      "name": "POISON ATTACKER",
+      "description": "On pickup, choose a crew member. While you have <c=status>Poison</c>, that character's card attacks deal +2 damage."
+    },
+    "Meditation": {
+      "name": "MEDITATION",
+      "description": "On pickup, choose a crew member. Every time you play 4 of that character's cards, gain 1 <c=status>TP</c>."
+    },
+    "Prayer": {
+      "name": "PRAYER",
+      "description": "On pickup, choose a crew member. Once per battle, whenever you play 10 of that character's cards, <c=healing>Heal 2<c/>."
+    },
+    "Reflection": {
+      "name": "REFLECTION",
+      "description": "On pickup, choose a crew member. Every time you play 3 of that character's cards, gain 1 <c=status>Shield</c>."
+    },
+    "EternalVenom": {
+      "name": "ETERNAL VENOM",
+      "description": "Poison does not degrade naturally."
+    },
+    "FreezeResistance": {
+      "name": "FREEZE RESISTANCE",
+      "description": "Gain 1 <c=status>concentration</c> every third turn."
+    }
+  },
+  "card": {
+    "TornadoBarrage": {
+      "name": "Tornado Barrage"
+    },
+    "PoisonSting": {
+      "name": "Poison Sting"
+    },
+    "SecretStash": {
+      "name": "Secret Stash"
+    },
+    "CrisbeeDonut": {
+      "name": "Crisbee Donut"
+    },
+    "SpoiledStash": {
+      "name": "Spoiled Stash"
+    },
+    "PoisonPincer": {
+      "name": "Poison Pincer"
+    },
+    "PoisonBomb": {
+      "name":  "Poison Bomb"
+    },
+    "PiercingBlow": {
+      "name": "Piercing Blow"
+    },
+    "Taunt": {
+      "name": "Taunt"
+    },
+    "Meditate": {
+      "name": "Meditate"
+    },
+    "RallyCry": {
+      "name": "Rally Cry",
+      "description": {
+        "None": "<c=keyword>5 TP:</c>\nGain <c=status>Charge</c> = your missing hull.",
+        "A": "<c=keyword>5 TP:</c>\nGain <c=status>Charge</c> = your missing hull.",
+        "B": "<c=keyword>6 TP:</c>\nGain <c=status>Charge</c> = your missing hull.\n<c=healing>Heal 1</c>"
+      }
+    },
+    "BraceSelf": {
+      "name": "Brace Self"
+    },
+    "RecoveryShot": {
+      "name": "Recovery Shot"
+    },
+    "PepTalk": {
+      "name": "Pep Talk",
+      "description": {
+        "None": "<c=keyword>7 TP:</c>\nChoose a crew member.\n<c=status>Inspire</c> them by 2.",
+        "A": "<c=keyword>7 TP:</c>\nChoose a crew member.\n<c=status>Inspire</c> them by 2.",
+        "B": "<c=keyword>7 TP:</c>\nChoose a crew member.\n<c=status>Inspire</c> them by 3."
+      }
+    },
+    "IcicleShot": {
+      "name": "Ice Shot"
+    },
+    "Empower": {
+      "name": "Empower"
+    },
+    "Defrost": {
+      "name": "Defrost"
+    },
+    "FrozenCoffin": {
+      "name": "Frozen Coffin"
+    },
+    "Concentrate": {
+      "name": "Concentrate"
+    },
+    "MagicFocus": {
+      "name": "Magic Focus"
+    },
+    "Icicle": {
+      "name": "Icicle"
+    },
+    "IceRain": {
+      "name":  "Ice Rain"
+    },
+    "Sturdy": {
+      "name": "Sturdy"
+    }
+  },
+  "status": {
+    "TP": {
+      "name": "TP",
+      "description": "Used as a cost to play effects on certain cards."
+    },
+    "Frost": {
+      "name": "Frost",
+      "description": "The opposite of <c=status>Heat</c>. At the start of your turn, if you have at least 1 of both <c=status>Heat</c> and <c=status>Frost</c>, lose 1 of both. If you ever have 3 or more Frost, <c=action>Flashfreeze</c>"
+    },
+    "Poison": {
+      "name": "Poison",
+      "description": "At the start of your turn, take <c=downside>{0} non-fatal damage</c> and decrease this by 1."
+    },
+    "Charge": {
+      "name": "Charge",
+      "description": "Your next card with active attack actions have it's damage increased by {0}."
+    },
+    "Taunted": {
+      "name": "Taunted",
+      "description": "All attacks against this ship will <c=keyword>stun</c>. Decreases by 1 at end of turn."
+    },
+    "Concentration": {
+      "name": "Concentration",
+      "description": "The next time you would gain any amount of <c=status>Frost</c>, instead lose 1 of this."
+    },
+    "Inspiration": {
+      "name": "{{name}} Is Inspired!",
+      "description": "All of {{name}}'s card attacks deal +{0} damage."
+    }
+  },
+  "dialogue": {
+    "KabbuRatzoChoice": "Fine."
+  },
+  "tooltips": {
+    "iceMissile": {
+      "name": "Icicle",
+      "description": "i dont want to write this yet"
+    }
+  }
+}
