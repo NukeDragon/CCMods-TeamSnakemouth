@@ -32,7 +32,6 @@ namespace NukeDragon.TeamSnakemouth
     public static void ApplyPatches(Harmony harmony)
     {
       harmony.Patch(AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)), transpiler: new HarmonyMethod(typeof(AAttackPatches), nameof(BeginTranspiler)));
-      harmony.Patch(AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)), prefix: new HarmonyMethod(typeof(AAttackPatches), nameof(BeginPrefix)));
       harmony.Patch(AccessTools.DeclaredMethod(typeof(Card), nameof(Card.RenderAction)), prefix: new HarmonyMethod(typeof(AAttackPatches), nameof(CardRenderActionPrefix)));
     }
     private static IEnumerable<CodeInstruction> BeginTranspiler(IEnumerable<CodeInstruction> instructions, ILGenerator ilGenerator, MethodBase originalMethod)
@@ -319,11 +318,6 @@ namespace NukeDragon.TeamSnakemouth
           return false;
         }
       }
-      return true;
-    }
-    public static bool BeginPrefix(AAttack __instance)
-    {
-      Console.WriteLine(__instance.whoDidThis.ToString());
       return true;
     }
   }

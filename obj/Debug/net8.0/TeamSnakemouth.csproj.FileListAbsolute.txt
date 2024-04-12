@@ -22,3 +22,4 @@ D:\Games\Mods\Cobalt Core\TeamSnakemouth\obj\Debug\net8.0\TeamSnakemouth.Assembl
 D:\Games\Mods\Cobalt Core\TeamSnakemouth\obj\Debug\net8.0\TeamSnakemouth.csproj.CoreCompileInputs.cache
 D:\Games\Mods\Cobalt Core\TeamSnakemouth\obj\Debug\net8.0\TeamSnakemouth.csproj.CopyComplete
 D:\Games\Mods\Cobalt Core\TeamSnakemouth\obj\Debug\net8.0\TeamSnakemouth.dll
+D:\Games\Mods\Cobalt Core\TeamSnakemouth\obj\Debug\net8.0\TeamSnakemouth.sourcelink.json

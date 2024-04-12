@@ -61,6 +61,14 @@
     "FreezeResistance": {
       "name": "FREEZE RESISTANCE",
       "description": "Gain 1 <c=status>concentration</c> every third turn."
+    },
+    "AntlionJaws": {
+      "name": "ANTLION JAWS",
+      "description": "On pickup, choose a crew member. All of their card attacks now pierce."
+    },
+    "DefenseExchange": {
+      "name": "DEFENSE EXCHANGE",
+      "description":  "On pickup, choose a crew member. Gain 1 Tempshield after playing one of their cards.\n <c=downside>All of their card attacks deal -1 damage.</c>"
     }
   },
   "card": {

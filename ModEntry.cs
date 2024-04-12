@@ -45,6 +45,8 @@ public sealed class ModEntry : SimpleMod
   internal ISpriteEntry FreezeResistanceSprite { get; }
   internal ISpriteEntry PoisonNeedlesSprite { get; }
   internal ISpriteEntry TPSaverSprite { get; }
+  internal ISpriteEntry AntlionJawsSprite { get; }
+  internal ISpriteEntry DefenseExchangeSprite { get; }
 
   internal IStatusEntry TP_Status { get; }
   internal IStatusEntry Frost_Status { get; }
@@ -224,9 +226,9 @@ public sealed class ModEntry : SimpleMod
   ];
   internal static IReadOnlyList<Type> Kabbu_Artifact_Types { get; } = [
    typeof(TardigradeShield),
-    typeof(Prayer),
    typeof(Reflection),
-    typeof(Meditation)
+    typeof(AntlionJaws),
+    typeof(DefenseExchange)
 ];
   internal static IEnumerable<Type> Snakemouth_AllArtifact_Types
       => Snakemouth_Artifact_Types.Concat(Snakemouth_Starter_Artifact_Types).Concat(Kabbu_Artifact_Types).Concat(Leif_Artifact_Types).Concat(Vi_Artifact_Types);
@@ -282,6 +284,8 @@ public sealed class ModEntry : SimpleMod
     FreezeResistanceSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/FreezeResistance.png"));
     PoisonNeedlesSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/PoisonNeedles.png"));
     TPSaverSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/TPSaver.png"));
+    AntlionJawsSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/AntlionJaws.png"));
+    DefenseExchangeSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/DefenseExchange.png"));
     Frozen_Modifier = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/modifiers/frozen_modifier_icon.png"));
     Icicle_Sprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/drones/missile_ice.png"));
     Icicle_Icon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/actionicons/missile_ice.png"));
