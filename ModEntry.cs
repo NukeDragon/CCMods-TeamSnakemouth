@@ -11,12 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MGColor = Microsoft.Xna.Framework.Color;
 
-/* In the Cobalt Core modding community it is common for namespaces to be <Author>.<ModName>
- * This is helpful to know at a glance what mod we're looking at, and who made it */
 namespace NukeDragon.TeamSnakemouth;
 
-/* ModEntry is the base for our mod. Others like to name it Manifest, and some like to name it <ModName>
- * Notice the ': SimpleMod'. This means ModEntry is a subclass (child) of the superclass SimpleMod (parent). This is help us use Nickel's functions more easily! */
 public sealed class ModEntry : SimpleMod
 {
   internal static ModEntry Instance { get; private set; } = null!;
@@ -24,6 +20,7 @@ public sealed class ModEntry : SimpleMod
   internal ILocaleBoundNonNullLocalizationProvider<IReadOnlyList<string>> Localizations { get; }
 
   internal Harmony Harmony { get; }
+  internal HookManager<ISnakemouthHook> HookManager { get; }
   internal IKokoroApi KokoroApi { get; }
 
   internal ISpriteEntry TPCost { get; }
@@ -238,6 +235,7 @@ public sealed class ModEntry : SimpleMod
     Instance = this;
     Harmony = new(package.Manifest.UniqueName);
     KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
+    HookManager = new();
 
     QueensPermitBlacklist.ApplyPatches(Harmony);
     CharacterBabbleChange.ApplyPatches(Harmony);

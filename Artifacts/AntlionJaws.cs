@@ -10,9 +10,9 @@ using NukeDragon.TeamSnakemouth.Cards;
 
 namespace NukeDragon.TeamSnakemouth
 {
-  internal class AntlionJaws : Artifact, IArtifact
+  internal class AntlionJaws : Artifact, IArtifact, ISnakemouthHook
   {
-    public Deck? assignedDeck;
+    public Deck? AssignedDeck;
     public static void Register(IModHelper helper)
     {
       helper.Content.Artifacts.RegisterArtifact("AntlionJaws", new()
@@ -27,6 +27,18 @@ namespace NukeDragon.TeamSnakemouth
         Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "AntlionJaws", "name"]).Localize,
         Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "AntlionJaws", "description"]).Localize
       });
+    }
+    public override void OnReceiveArtifact(State state)
+    {
+      state.GetCurrentQueue().QueueImmediate<CardAction>(new AArtifactChooseCharacter { artifact = this });
+    }
+    public void ModifyAAttack(ref AAttack attack, State s, Combat c)
+    {
+      if (attack.whoDidThis == this.AssignedDeck && !attack.piercing)
+      {
+        attack.piercing = true;
+        this.Pulse();
+      }
     }
   }
 }

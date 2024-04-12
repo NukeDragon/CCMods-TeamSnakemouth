@@ -31,10 +31,42 @@ namespace NukeDragon.TeamSnakemouth
   {
     public static void ApplyPatches(Harmony harmony)
     {
-      harmony.Patch(AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)), transpiler: new HarmonyMethod(typeof(AAttackPatches), nameof(BeginTranspiler)));
+      harmony.Patch(AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)), transpiler: new HarmonyMethod(typeof(AAttackPatches), nameof(AAttackModifyHookTranspiler)));
+      harmony.Patch(AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)), transpiler: new HarmonyMethod(typeof(AAttackPatches), nameof(AttackModifierApplyTranspiler)));
       harmony.Patch(AccessTools.DeclaredMethod(typeof(Card), nameof(Card.RenderAction)), prefix: new HarmonyMethod(typeof(AAttackPatches), nameof(CardRenderActionPrefix)));
     }
-    private static IEnumerable<CodeInstruction> BeginTranspiler(IEnumerable<CodeInstruction> instructions, ILGenerator ilGenerator, MethodBase originalMethod)
+    private static IEnumerable<CodeInstruction> AAttackModifyHookTranspiler(IEnumerable<CodeInstruction> instructions, ILGenerator ilGenerator, MethodBase originalMethod)
+    {
+      try
+      {
+        return new SequenceBlockMatcher<CodeInstruction>(instructions).Find(
+          ILMatches.Ldarg(2),
+          ILMatches.AnyCall,
+          ILMatches.AnyCall,
+          ILMatches.AnyStloc
+          ).Insert(
+          SequenceMatcherPastBoundsDirection.Before,
+          SequenceMatcherInsertionResultingBounds.IncludingInsertion,
+          new CodeInstruction(OpCodes.Ldarg_0),
+          new CodeInstruction(OpCodes.Ldarg_2),
+          new CodeInstruction(OpCodes.Ldarg_3),
+          new CodeInstruction(OpCodes.Call, AccessTools.DeclaredMethod(MethodBase.GetCurrentMethod()!.DeclaringType!, nameof(AAttackModifyHook)))
+          )
+          .AllElements();
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine("Team Snakemouth Transpiler 'AAttackPatches.AAttackModifyHookTranspiler' failed. Ping @NukeDragon on discord to get him to fix this crap.");
+        Console.WriteLine(e);
+        return instructions;
+      }
+    }
+    private static void AAttackModifyHook(AAttack self, State s, Combat c)
+    {
+      foreach (var hook in ModEntry.Instance.HookManager.GetHooksWithProxies(ModEntry.Instance.KokoroApi, s.EnumerateAllArtifacts())) hook.ModifyAAttack(ref self, s, c);
+    }
+
+      private static IEnumerable<CodeInstruction> AttackModifierApplyTranspiler(IEnumerable<CodeInstruction> instructions, ILGenerator ilGenerator, MethodBase originalMethod)
     {
       try
       {
@@ -66,7 +98,7 @@ namespace NukeDragon.TeamSnakemouth
       }
       catch (Exception e)
       {
-        Console.WriteLine("Team Snakemouth Transpiler 'AAttackModifierTranspiler.BeginTranspiler' failed. Ping @NukeDragon on discord to get him to fix this crap.");
+        Console.WriteLine("Team Snakemouth Transpiler 'AAttackPatches.AttackModifierApplyTranspiler' failed. Ping @NukeDragon on discord to get him to fix this crap.");
         Console.WriteLine(e);
         return instructions;
       }
