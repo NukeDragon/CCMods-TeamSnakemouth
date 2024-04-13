@@ -68,7 +68,15 @@
     },
     "DefenseExchange": {
       "name": "DEFENSE EXCHANGE",
-      "description":  "On pickup, choose a crew member. Gain 1 Tempshield after playing one of their cards.\n <c=downside>All of their card attacks deal -1 damage.</c>"
+      "description": "On pickup, choose a crew member. Gain 1 Tempshield after playing one of their cards.\n <c=downside>All of their card attacks deal -1 damage.</c>"
+    },
+    "ElectricNeedles": {
+      "name": "ELECTRIC NEEDLES",
+      "description": "Every 5 Vi attacks will stun."
+    },
+    "PoisonNeedles": {
+      "name": "POISON NEEDLES",
+      "description":  "Every 4 Vi attacks will apply 1 <c=status>poison</c>."
     }
   },
   "card": {

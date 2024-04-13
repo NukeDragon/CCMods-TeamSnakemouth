@@ -124,6 +124,17 @@ namespace NukeDragon.TeamSnakemouth
           if (g.state.artifacts.Contains(artifact1)) g.state.artifacts.Remove(artifact1);
           character.artifacts.Add(artifact1);
         }
+        if (ArtifactChoice is DefenseExchange)
+        {
+          DefenseExchange? artifact1 = ArtifactChoice as DefenseExchange;
+          artifact1!.AssignedDeck = character.deckType;
+          foreach (Character character1 in g.state.characters)
+          {
+            if (character1.artifacts.Contains(artifact1)) character1.artifacts.Remove(artifact1);
+          }
+          if (g.state.artifacts.Contains(artifact1)) g.state.artifacts.Remove(artifact1);
+          character.artifacts.Add(artifact1);
+        }
         g.CloseRoute(this);
       }
     }
