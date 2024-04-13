@@ -197,7 +197,8 @@ public sealed class ModEntry : SimpleMod
     typeof(BraceSelf),
     typeof(RecoveryShot),
     typeof(Sturdy),
-    typeof(PepTalk)
+    typeof(PepTalk),
+    typeof(ExperienceShot)
   ];
 
   internal static IEnumerable<Type> Snakemouth_AllCard_Types

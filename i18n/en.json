@@ -132,6 +132,14 @@
         "B": "<c=keyword>7 TP:</c>\nChoose a crew member.\n<c=status>Inspire</c> them by 3."
       }
     },
+    "ExperienceShot": {
+      "name": "Experience Shot",
+      "description": {
+        "None": "Attack for {0} damage. If it kills, gain 2 <c=keyword>Max TP</c>.",
+        "A": "<c=keyword>Piercing</c> attack for {0} damage. If it kills, gain 2 <c=keyword>Max TP</c>.",
+        "B": "Attack for {0} damage. If it kills, gain 3 <c=keyword>Max TP</c>."
+      }
+    },
     "IcicleShot": {
       "name": "Ice Shot"
     },
