@@ -26,7 +26,10 @@ namespace NukeDragon.TeamSnakemouth.Cards
       Upgrade upgrade = this.upgrade;
       data.cost = 2;
       data.exhaust = true;
-      data.description = ModEntry.Instance.Localizations.Localize(["card", "ExperienceShot", "description", upgrade.ToString()]);
+      data.description = ModEntry.Instance.Localizations.Localize(["card", "ExperienceShot", "description", upgrade.ToString()], new
+      {
+        dmg = this.upgrade == Upgrade.A ? GetDmg(state, 3) : GetDmg(state, 2)
+      });
       switch (upgrade)
       {
         case Upgrade.None:

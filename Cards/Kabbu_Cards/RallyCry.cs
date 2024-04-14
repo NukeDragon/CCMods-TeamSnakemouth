@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using FMOD;
 using System;
+using static System.Collections.Specialized.BitVector32;
 
 namespace NukeDragon.TeamSnakemouth.Cards
 {
@@ -50,49 +51,33 @@ namespace NukeDragon.TeamSnakemouth.Cards
           int num = s.ship.hullMax - s.ship.hull;
           List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-            new ADummyAction(),
-                  ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 5
-                      ),
-                      action: new AStatus
-                      {
-                      targetPlayer = true,
-                      status = ModEntry.Instance.Charge_Status.Status,
-                      statusAmount = num
-                      }
-                    )
-                };
+            new ATPCostAction()
+              {
+              cost = 5,
+              action = new AStatus
+                {
+              targetPlayer = true,
+              status = ModEntry.Instance.Charge_Status.Status,
+              statusAmount = num
+                }
+              }
+            };
           actions = cardActionList1;
           break;
         case Upgrade.A:
           int num2 = s.ship.hullMax - s.ship.hull;
           List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-            new ADummyAction(),
-                  ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 5
-                      ),
-                      action: new AStatus
-                      {
-                      targetPlayer = true,
-                      status = ModEntry.Instance.Charge_Status.Status,
-                      statusAmount = num2
-                      }
-                    )
+            new ATPCostAction()
+              {
+              cost = 5,
+              action = new AStatus
+                {
+              targetPlayer = true,
+              status = ModEntry.Instance.Charge_Status.Status,
+              statusAmount = num2
+                }
+              }
                 };
           actions = cardActionList2;
           break;
@@ -101,19 +86,11 @@ namespace NukeDragon.TeamSnakemouth.Cards
           Guid id = new Guid();
           List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-            new ADummyAction(),
-                  ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 5
-                      ),
-                      action: ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id)
-                    ),
+            new ATPCostAction()
+            {
+              cost = 5,
+              action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id)
+            },
             ModEntry.Instance.KokoroApi.Actions.MakeContinued(id, new AStatus()
             {
               targetPlayer = true,

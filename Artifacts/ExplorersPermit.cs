@@ -54,7 +54,7 @@ internal sealed class ExplorersPermit : Artifact, IArtifact
       "<c=artifact>{0}</c>\n".FF(__instance.GetLocName()),
         ModEntry.Instance.Localizations.Localize(["artifact", "ExplorersPermit", "descriptioncombat"], new
         {
-          max = (int)(artifact1!.countermax),
+          max = artifact1!.countermax,
         })
       );
       return;
@@ -63,8 +63,8 @@ internal sealed class ExplorersPermit : Artifact, IArtifact
       "<c=artifact>{0}</c>\n".FF(__instance.GetLocName()),
         ModEntry.Instance.Localizations.Localize(["artifact", "ExplorersPermit", "description"], new
         {
-          current = (int)(artifact1!.countercurrent),
-          max = (int)(artifact1!.countermax),
+          current = artifact1!.countercurrent,
+          max = artifact1!.countermax,
         })
       );
   }

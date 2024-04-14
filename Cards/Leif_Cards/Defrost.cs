@@ -36,18 +36,11 @@ namespace NukeDragon.TeamSnakemouth.Cards
           Guid id1 = new Guid();
           List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-            ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 2
-                      ),
-                      action: ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id1)
-                    ),
+            new ATPCostAction()
+            {
+              cost = 2,
+              action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id1)
+            },
             ModEntry.Instance.KokoroApi.Actions.MakeContinued(id1, new AStatus()
             {
               targetPlayer = true,
@@ -67,18 +60,11 @@ namespace NukeDragon.TeamSnakemouth.Cards
           Guid id2 = new Guid();
           List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-            ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 2
-                      ),
-                      action: ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id2)
-                    ),
+            new ATPCostAction()
+            {
+              cost = 2,
+              action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id2)
+            },
             ModEntry.Instance.KokoroApi.Actions.MakeContinued(id2, new AStatus()
             {
               targetPlayer = true,

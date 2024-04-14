@@ -135,9 +135,9 @@
     "ExperienceShot": {
       "name": "Experience Shot",
       "description": {
-        "None": "Attack for {0} damage. If it kills, gain 2 <c=keyword>Max TP</c>.",
-        "A": "<c=keyword>Piercing</c> attack for {0} damage. If it kills, gain 2 <c=keyword>Max TP</c>.",
-        "B": "Attack for {0} damage. If it kills, gain 3 <c=keyword>Max TP</c>."
+        "None": "Attack for <c=keyword>{{dmg}}</c> damage. If it kills, gain <c=keyword>2 Max TP</c>.",
+        "A": "<c=keyword>Piercing</c> attack for <c=keyword>{{dmg}}</c> damage. If it kills, gain <c=keyword>2 Max TP</c>.",
+        "B": "Attack for <c=keyword>{{dmg}}</c> damage. If it kills, gain <c=keyword>3 Max TP</c>."
       }
     },
     "IcicleShot": {

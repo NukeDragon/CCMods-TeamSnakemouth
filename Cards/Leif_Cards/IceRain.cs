@@ -55,18 +55,11 @@ namespace NukeDragon.TeamSnakemouth.Cards
           };
           List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-             ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 4
-                      ),
-                      action: ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id1)
-                    ),
+             new ATPCostAction
+             {
+               cost = 4,
+               action =  ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id1)
+             },
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id1, new ASpawn()
             {
               thing = missile1,
@@ -99,19 +92,12 @@ namespace NukeDragon.TeamSnakemouth.Cards
             targetPlayer = false,
           };
           List<CardAction> cardActionList2 = new List<CardAction>()
+          {
+                new ATPCostAction
                 {
-                    ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 4
-                      ),
-                      action: ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id2)
-                    ),
+                  cost = 4,
+                  action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id2)
+                },
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id2, new ASpawn()
             {
               thing = missile2,

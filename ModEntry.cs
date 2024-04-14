@@ -246,6 +246,7 @@ public sealed class ModEntry : SimpleMod
     FrozenDamageTranspiler.ApplyPatches(Harmony);
     FrozenIntentStunTranspiler.ApplyPatches(Harmony);
     AAttackPatches.ApplyPatches(Harmony);
+    CardPatches.ApplyPatches(Harmony);
     BeforeAfterTurnPatch.ApplyPatches(Harmony);
     PoisonManager.ApplyPatches(Harmony);
     ChargeManager.ApplyPatches(Harmony);

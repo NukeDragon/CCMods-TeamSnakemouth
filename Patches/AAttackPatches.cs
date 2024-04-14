@@ -33,7 +33,7 @@ namespace NukeDragon.TeamSnakemouth
     {
       harmony.Patch(AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)), transpiler: new HarmonyMethod(typeof(AAttackPatches), nameof(AAttackModifyHookTranspiler)));
       harmony.Patch(AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)), transpiler: new HarmonyMethod(typeof(AAttackPatches), nameof(AttackModifierApplyTranspiler)));
-      harmony.Patch(AccessTools.DeclaredMethod(typeof(Card), nameof(Card.RenderAction)), prefix: new HarmonyMethod(typeof(AAttackPatches), nameof(CardRenderActionPrefix)));
+      
     }
     private static IEnumerable<CodeInstruction> AAttackModifyHookTranspiler(IEnumerable<CodeInstruction> instructions, ILGenerator ilGenerator, MethodBase originalMethod)
     {
@@ -129,34 +129,6 @@ namespace NukeDragon.TeamSnakemouth
           targetPlayer = self.targetPlayer,
         });
       }
-    }
-
-    private static bool CardRenderActionPrefix(G g, State state, CardAction action, bool dontDraw, int shardAvailable, int stunChargeAvailable, int bubbleJuiceAvailable, ref int __result)
-    {
-      if (action is AAttack aattack )
-      {
-        bool freezing = aattack.GetFreezing().GetValueOrDefault();
-        if (freezing)
-        {
-          aattack.SetFreezing(false);
-
-          var position = g.Push(rect: new()).rect.xy;
-          int initialX = (int)position.x;
-
-          position.x += Card.RenderAction(g, state, action, dontDraw, shardAvailable, stunChargeAvailable, bubbleJuiceAvailable);
-          position.x += 2;
-          if (!dontDraw)
-          {
-            Draw.Sprite(ModEntry.Instance.Frozen_Modifier.Sprite, position.x, position.y);
-            }
-          position.x += SpriteLoader.Get(ModEntry.Instance.Frozen_Modifier.Sprite)!.Width;
-          __result = (int)position.x - initialX;
-          aattack.SetFreezing(true);
-          g.Pop();
-          return false;
-        }
-      }
-      return true;
     }
   }
 }

@@ -50,18 +50,12 @@ namespace NukeDragon.TeamSnakemouth.Cards
           Guid id1 = new Guid();
           List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-             ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 3
-                      ),
-                      action: ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id1)
-                    ),
+             new ATPCostAction
+             {
+               cost = 3,
+               action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id1)
+             },
+
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id1, new AAttack()
                     {
                         damage = this.GetDmg(s, 1),
@@ -84,18 +78,11 @@ namespace NukeDragon.TeamSnakemouth.Cards
           Guid id2 = new Guid();
           List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-                    ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 2
-                      ),
-                      action: ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id2)
-                    ),
+                    new ATPCostAction
+             {
+               cost = 2,
+               action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id2)
+             },
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id2, new AAttack()
                     {
                         damage = this.GetDmg(s, 1),
@@ -118,18 +105,11 @@ namespace NukeDragon.TeamSnakemouth.Cards
           Guid id3 = new Guid();
           List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-                   ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 4
-                      ),
-                      action: ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id3)
-                    ),
+                   new ATPCostAction
+             {
+               cost = 4,
+               action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id3)
+             },
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id3, new AAttack()
                     {
                         damage = this.GetDmg(s, 1),
