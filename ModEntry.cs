@@ -251,7 +251,6 @@ public sealed class ModEntry : SimpleMod
     PDamModPatches.ApplyPatches(Harmony);
     MGPatches.ApplyPatches(Harmony);
     IceMissileManager.ApplyPatches(Harmony);
-    CustomTTGlossary.ApplyPatches(Harmony);
     _ = new FlashFreezeTrigger();
     _ = new InspirationManager();
 

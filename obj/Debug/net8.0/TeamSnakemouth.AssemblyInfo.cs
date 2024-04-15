@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TeamSnakemouth")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e939614269e85cfd9b873b68594fdae479047784")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72139981df203b48f7894c0574a200441fe5f4b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("TeamSnakemouth")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TeamSnakemouth")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
