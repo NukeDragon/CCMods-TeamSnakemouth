@@ -26,5 +26,7 @@ namespace NukeDragon.TeamSnakemouth
   public interface ISnakemouthHook
   {
     void ModifyAAttack(ref AAttack attack, State s, Combat c) { }
+
+    void OnATPCost(ATPCostAction action, State s, Combat c) { }
   }
 }

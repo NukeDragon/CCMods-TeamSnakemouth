@@ -1,6 +1,8 @@
 ﻿using Nickel;
 using System.Reflection;
 using System.Collections.Generic;
+using FMOD;
+using System;
 
 namespace NukeDragon.TeamSnakemouth.Cards
 {
@@ -27,10 +29,14 @@ namespace NukeDragon.TeamSnakemouth.Cards
       switch (upgrade)
       {
         case Upgrade.None:
+          data.cost = 0;
           break;
         case Upgrade.A:
+          data.cost = 0;
+          data.infinite = true;
           break;
         case Upgrade.B:
+          data.cost = 1;
           break;
       }
       return data;
@@ -41,20 +47,78 @@ namespace NukeDragon.TeamSnakemouth.Cards
       switch (upgrade)
       {
         case Upgrade.None:
+          Guid id1 = new Guid();
           List<CardAction> cardActionList1 = new List<CardAction>()
                 {
+            new ATPCostAction
+            {
+              cost = 4,
+              action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id1)
+            },
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id1, new AAttack
+            {
+              damage = GetDmg(s, 1)
+            }),
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id1, new AAttack
+            {
+              damage = GetDmg(s, 1)
+            }),
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id1, new ADrawCard
+            {
+              count = 1
+            }),
                 };
           actions = cardActionList1;
           break;
         case Upgrade.A:
+          Guid id2 = new Guid();
           List<CardAction> cardActionList2 = new List<CardAction>()
                 {
+            new ATPCostAction
+            {
+              cost = 4,
+              action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id2)
+            },
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id2, new AAttack
+            {
+              damage = GetDmg(s, 1)
+            }),
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id2, new AAttack
+            {
+              damage = GetDmg(s, 1)
+            }),
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id2, new ADrawCard
+            {
+              count = 1
+            }),
                 };
           actions = cardActionList2;
           break;
         case Upgrade.B:
+          Guid id3 = new Guid();
           List<CardAction> cardActionList3 = new List<CardAction>()
                 {
+            new ATPCostAction
+            {
+              cost = 5,
+              action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id3)
+            },
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id3, new AAttack
+            {
+              damage = GetDmg(s, 1)
+            }),
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id3, new AAttack
+            {
+              damage = GetDmg(s, 1)
+            }),
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id3, new ADrawCard
+            {
+              count = 2
+            }),
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id3, new AEnergy
+            {
+              changeAmount = 1
+            }),
                 };
           actions = cardActionList3;
           break;

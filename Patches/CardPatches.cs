@@ -64,9 +64,9 @@ namespace NukeDragon.TeamSnakemouth.Patches
           position.x += 2;
           if (!dontDraw)
           {
-            Draw.Sprite(ModEntry.Instance.Frozen_Modifier.Sprite, position.x, position.y);
+            Draw.Sprite(ModEntry.Instance.FrozenModifierSprite.Sprite, position.x, position.y);
           }
-          position.x += SpriteLoader.Get(ModEntry.Instance.Frozen_Modifier.Sprite)!.Width;
+          position.x += SpriteLoader.Get(ModEntry.Instance.FrozenModifierSprite.Sprite)!.Width;
           __result = (int)position.x - initialX;
           aattack.SetFreezing(true);
           g.Pop();

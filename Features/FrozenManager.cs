@@ -11,6 +11,7 @@ using Nanoray.Shrike.Harmony;
 using System.Data.SqlTypes;
 using NukeDragon.TeamSnakemouth.Patches;
 using FMOD;
+using Nickel;
 
 namespace NukeDragon.TeamSnakemouth
 {
@@ -70,7 +71,7 @@ namespace NukeDragon.TeamSnakemouth
     {
       if (pdm == ModEntry.Instance.frozen)
       {
-        Spr? id1 = new Spr?(ModEntry.Instance.Frozen_Modifier.Sprite);
+        Spr? id1 = new Spr?(ModEntry.Instance.FrozenModifierSprite.Sprite);
         double x1 = vec.x;
         double y1 = vec.y;
         Color? nullable2 = new Color?(color);
@@ -201,6 +202,20 @@ namespace NukeDragon.TeamSnakemouth
       }
       Audio.Play(new GUID?(FSPRO.Event.Status_Stun));
       return true;
+    }
+
+    public static List<Tooltip> GetTooltips()
+    {
+      List<Tooltip> tooltips = [
+        new GlossaryTooltip(key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::PDamModFrozen")
+        {
+          Icon = ModEntry.Instance.FrozenModifierSprite.Sprite,
+          Title = ModEntry.Instance.Localizations.Localize(["tooltips", "frozen", "name"]),
+          Description = ModEntry.Instance.Localizations.Localize(["tooltips", "frozen", "description"]),
+          TitleColor = Colors.white
+        }
+        ];
+      return tooltips;
     }
   }
 }

@@ -76,7 +76,11 @@
     },
     "PoisonNeedles": {
       "name": "POISON NEEDLES",
-      "description":  "Every 4 Vi attacks will apply 1 <c=status>poison</c>."
+      "description": "Every 4 Vi attacks will apply 1 <c=status>poison</c>."
+    },
+    "TPSaver": {
+      "name": "TP SAVER",
+      "description": "If you spend 5 or more <c=status>TP</c> at once, gain 1 <c=status>TP</c>"
     }
   },
   "card": {
@@ -99,7 +103,10 @@
       "name": "Poison Pincer"
     },
     "PoisonBomb": {
-      "name":  "Poison Bomb"
+      "name": "Poison Bomb"
+    },
+    "CycloneBarrage": {
+      "name": "Cyclone Barrage"
     },
     "PiercingBlow": {
       "name": "Piercing Blow"
@@ -205,6 +212,10 @@
     "iceMissile": {
       "name": "Icicle",
       "description": "This missile is going to deal <c=attack>2</c> damage and <c=keyword>freeze</c>."
+    },
+    "frozen": {
+      "name": "Frozen",
+      "description": "While this part is <c=keyword>frozen</c>, it is stunned.\nAttacks against this part will deal +1 damage and remove <c=keyword>frozen</c>.\nRemoved at end of enemy's turn."
     }
   }
 }

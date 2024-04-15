@@ -21,7 +21,7 @@ namespace NukeDragon.TeamSnakemouth
         Meta = new()
         {
           owner = ModEntry.Instance.Vi_Deck.Deck,
-          pools = [ArtifactPool.EventOnly],
+          pools = [ArtifactPool.Common],
         },
         Sprite = ModEntry.Instance.ElectricNeedlesSprite.Sprite,
         Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ElectricNeedles", "name"]).Localize,

@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
+using System;
 
 namespace NukeDragon.TeamSnakemouth;
 
@@ -12,6 +13,7 @@ internal sealed class ExplorersPermit : Artifact, IArtifact
   public int countercurrent = 1;
   public bool thisexists = false;
   public bool incombat = false;
+  int snakemouthMembersInCrew = 0;
 
   public static void Register(IModHelper helper)
   {
@@ -75,9 +77,17 @@ internal sealed class ExplorersPermit : Artifact, IArtifact
     incombat = false;
   }
 
-  public override void OnReceiveArtifact(State state)
+  public override void OnReceiveArtifact(State state) 
   {
     thisexists = true;
+    foreach (Character character in state.characters)
+    {
+      if (character.deckType == ModEntry.Instance.Vi_Deck.Deck || character.deckType == ModEntry.Instance.Kabbu_Deck.Deck || character.deckType == ModEntry.Instance.Leif_Deck.Deck)
+      {
+        snakemouthMembersInCrew++;
+      }
+    }
+    countermax = snakemouthMembersInCrew == 1 ? 15 : (snakemouthMembersInCrew == 2 ? 25 : 30);
     countercurrent = countermax;
   }
 

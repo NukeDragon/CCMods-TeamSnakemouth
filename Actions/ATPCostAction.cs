@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NukeDragon.TeamSnakemouth
 {
-  internal class ATPCostAction : CardAction
+  public class ATPCostAction : CardAction
   {
     public int cost;
     public CardAction? action;
@@ -17,6 +17,7 @@ namespace NukeDragon.TeamSnakemouth
       timer = 0;
       int currentTP = s.ship.Get(ModEntry.Instance.TP_Status.Status);
       if (currentTP < cost || action == null) return;
+      foreach (var hook in ModEntry.Instance.HookManager.GetHooksWithProxies(ModEntry.Instance.KokoroApi, s.EnumerateAllArtifacts())) hook.OnATPCost(this, s, c);
       s.ship.Add(ModEntry.Instance.TP_Status.Status, -cost);
       c.QueueImmediate(action);
     }

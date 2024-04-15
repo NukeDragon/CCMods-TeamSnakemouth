@@ -33,8 +33,22 @@ namespace NukeDragon.TeamSnakemouth
     {
       harmony.Patch(AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)), transpiler: new HarmonyMethod(typeof(AAttackPatches), nameof(AAttackModifyHookTranspiler)));
       harmony.Patch(AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.Begin)), transpiler: new HarmonyMethod(typeof(AAttackPatches), nameof(AttackModifierApplyTranspiler)));
-      
+      harmony.Patch(AccessTools.DeclaredMethod(typeof(AAttack), nameof(AAttack.GetTooltips)), postfix: new HarmonyMethod(typeof(AAttackPatches), nameof(GetTooltipsPostfix)));
     }
+
+    private static List<Tooltip> GetTooltipsPostfix(List<Tooltip> __result, AAttack __instance)
+    {
+      List<Tooltip> result = __result;
+      if (__instance.GetFreezing() == true)
+      {
+        foreach (Tooltip tooltip in FrozenManager.GetTooltips())
+        {
+          result.Add(tooltip);
+        }
+      };
+      return result;
+    } 
+    
     private static IEnumerable<CodeInstruction> AAttackModifyHookTranspiler(IEnumerable<CodeInstruction> instructions, ILGenerator ilGenerator, MethodBase originalMethod)
     {
       try

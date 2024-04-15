@@ -51,7 +51,7 @@ public sealed class ModEntry : SimpleMod
   internal IStatusEntry Charge_Status { get; }
   internal IStatusEntry Taunted_Status { get; }
   internal IStatusEntry Concentration_Status { get; }
-  internal ISpriteEntry Frozen_Modifier { get; }
+  internal ISpriteEntry FrozenModifierSprite { get; }
 
   internal ISpriteEntry Icicle_Sprite { get; }
   internal ISpriteEntry Icicle_Icon { get; }
@@ -173,7 +173,8 @@ public sealed class ModEntry : SimpleMod
     typeof(CrisbeeDonut),
     typeof(SpoiledStash),
     typeof(PoisonPincer),
-    typeof(PoisonBomb)
+    typeof(PoisonBomb),
+    typeof(CycloneBarrage)
   ];
   internal static IReadOnlyList<Type> Leif_StarterCard_Types { get; } = [
     typeof(IcicleShot),
@@ -283,7 +284,7 @@ public sealed class ModEntry : SimpleMod
     TPSaverSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/TPSaver.png"));
     AntlionJawsSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/AntlionJaws.png"));
     DefenseExchangeSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/DefenseExchange.png"));
-    Frozen_Modifier = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/modifiers/frozen_modifier_icon.png"));
+    FrozenModifierSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/modifiers/frozen_modifier_icon.png"));
     Icicle_Sprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/drones/missile_ice.png"));
     Icicle_Icon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/actionicons/missile_ice.png"));
     DefaultCardArt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/default_cardbackground.png"));
