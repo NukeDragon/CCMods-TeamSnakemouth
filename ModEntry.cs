@@ -238,19 +238,17 @@ public sealed class ModEntry : SimpleMod
     KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
     HookManager = new();
 
-    QueensPermitBlacklist.ApplyPatches(Harmony);
-    CharacterBabbleChange.ApplyPatches(Harmony);
-    MapExitTPRefill.ApplyPatches(Harmony);
+    ArtifactBlacklist.ApplyPatches(Harmony);
+    CharacterBabblePatch.ApplyPatches(Harmony);
+    MapExitPatches.ApplyPatches(Harmony);
     FrostManager.ApplyPatches(Harmony);
-    FrozenRenderTranspiler.ApplyPatches(Harmony);
-    FrozenDamageTranspiler.ApplyPatches(Harmony);
-    FrozenIntentStunTranspiler.ApplyPatches(Harmony);
+    FrozenManager.ApplyPatches(Harmony);;
     AAttackPatches.ApplyPatches(Harmony);
     CardPatches.ApplyPatches(Harmony);
     BeforeAfterTurnPatch.ApplyPatches(Harmony);
     PoisonManager.ApplyPatches(Harmony);
     ChargeManager.ApplyPatches(Harmony);
-    PDamModOverride2Patch.ApplyPatches(Harmony);
+    PDamModPatches.ApplyPatches(Harmony);
     MGPatches.ApplyPatches(Harmony);
     IceMissileManager.ApplyPatches(Harmony);
     CustomTTGlossary.ApplyPatches(Harmony);

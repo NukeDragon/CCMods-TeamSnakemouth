@@ -19,11 +19,11 @@ namespace NukeDragon.TeamSnakemouth
     public static void SetOverride2(this Part self, PDamMod? value) => ModEntry.Instance.Helper.ModData.SetOptionalModData<PDamMod>(self, "PDamModOverride2", value);
   }
 
-  internal static class PDamModOverride2Patch
+  internal static class PDamModPatches
   {
     public static void ApplyPatches(Harmony harmony)
     {
-      harmony.Patch(AccessTools.DeclaredMethod(typeof(Part), nameof(Part.GetDamageModifier)), prefix: new HarmonyMethod(typeof(PDamModOverride2Patch), nameof(GetDamMod_Prefix)));
+      harmony.Patch(AccessTools.DeclaredMethod(typeof(Part), nameof(Part.GetDamageModifier)), prefix: new HarmonyMethod(typeof(PDamModPatches), nameof(GetDamMod_Prefix)));
     }
 
     public static bool GetDamMod_Prefix(Part __instance, ref PDamMod __result)

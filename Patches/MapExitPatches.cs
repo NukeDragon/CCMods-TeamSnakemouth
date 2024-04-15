@@ -7,11 +7,11 @@ using HarmonyLib;
 
 namespace NukeDragon.TeamSnakemouth
 {
-  internal class MapExitTPRefill
+  internal class MapExitPatches
   {
     public static void ApplyPatches(Harmony harmony)
     {
-      harmony.Patch(AccessTools.DeclaredMethod(typeof(MapExit), nameof(MapExit.MakeRoute)), postfix: new HarmonyMethod(typeof(MapExitTPRefill), nameof(MakeRoute_Postfix)));
+      harmony.Patch(AccessTools.DeclaredMethod(typeof(MapExit), nameof(MapExit.MakeRoute)), postfix: new HarmonyMethod(typeof(MapExitPatches), nameof(MakeRoute_Postfix)));
     }
     private static void MakeRoute_Postfix(State s, Route __result)
     {

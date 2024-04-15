@@ -204,7 +204,7 @@
   "tooltips": {
     "iceMissile": {
       "name": "Icicle",
-      "description": "i dont want to write this yet"
+      "description": "This missile is going to deal <c=attack>2</c> damage and <c=keyword>freeze</c>."
     }
   }
 }

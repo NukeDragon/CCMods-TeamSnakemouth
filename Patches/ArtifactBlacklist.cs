@@ -7,11 +7,11 @@ using HarmonyLib;
 
 namespace NukeDragon.TeamSnakemouth
 {
-  internal class QueensPermitBlacklist
+  internal class ArtifactBlacklist
   {
     public static void ApplyPatches(Harmony harmony)
     {
-      harmony.Patch(AccessTools.DeclaredMethod(typeof(ArtifactReward), nameof(ArtifactReward.GetBlockedArtifacts)), postfix: new HarmonyMethod(typeof(QueensPermitBlacklist), nameof(GetBlockedArtifacts_Postfix)));
+      harmony.Patch(AccessTools.DeclaredMethod(typeof(ArtifactReward), nameof(ArtifactReward.GetBlockedArtifacts)), postfix: new HarmonyMethod(typeof(ArtifactBlacklist), nameof(GetBlockedArtifacts_Postfix)));
     }
     private static void GetBlockedArtifacts_Postfix(State s, HashSet<Type> __result)
     {

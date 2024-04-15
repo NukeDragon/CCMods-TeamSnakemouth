@@ -10,6 +10,7 @@ using Nanoray.Shrike.Harmony;
 using Nanoray.Shrike;
 using Nickel;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace NukeDragon.TeamSnakemouth.Features
 {
@@ -147,7 +148,13 @@ namespace NukeDragon.TeamSnakemouth.Features
       if (__instance.missileType != ModEntry.Instance.ice) return __result;
       List<Tooltip> tooltips =
       [
-        new CustomTTGlossary(CustomTTGlossary.GlossaryType.midrow, () => ModEntry.Instance.Icicle_Icon.Sprite, () => ModEntry.Instance.Localizations.Localize(["tooltips", "iceMissile", "name"]), () => ModEntry.Instance.Localizations.Localize(["tooltips", "iceMissile", "description"]), key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::IceMissile"),
+      new GlossaryTooltip(key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::IceMissile")
+      {
+          Icon = ModEntry.Instance.Icicle_Icon.Sprite,
+          Title = ModEntry.Instance.Localizations.Localize(["tooltips", "iceMissile", "name"]),
+          Description = ModEntry.Instance.Localizations.Localize(["tooltips", "iceMissile", "description"]),
+          TitleColor = Colors.midrow
+      }
       ];
       return tooltips;
     }
