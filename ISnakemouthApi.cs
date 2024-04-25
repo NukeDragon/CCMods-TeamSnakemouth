@@ -15,9 +15,10 @@ namespace NukeDragon.TeamSnakemouth
     IStatusEntry TP_Status { get; }
     IStatusEntry Frost_Status { get; }
     IStatusEntry Poison_Status { get; }
-    IStatusEntry Charge_Status { get; }
     IStatusEntry Taunted_Status { get; }
     IStatusEntry Concentration_Status { get; }
+    Dictionary<Deck, IStatusEntry> Inspired_Status_Dictionary { get; }
+    Dictionary<Deck, IStatusEntry> Charged_Status_Dictionary { get; }
 
     void RegisterHook(ISnakemouthHook hook, double priority);
     void UnregisterHook(ISnakemouthHook hook);

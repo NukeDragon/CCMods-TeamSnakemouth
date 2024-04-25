@@ -36,7 +36,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
           data.infinite = true;
           break;
         case Upgrade.B:
-          data.cost = 1;
+          data.cost = 0;
           break;
       }
       return data;
@@ -100,7 +100,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
                 {
             new ATPCostAction
             {
-              cost = 5,
+              cost = 4,
               action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id3)
             },
             ModEntry.Instance.KokoroApi.Actions.MakeContinued(id3, new AAttack
@@ -114,10 +114,6 @@ namespace NukeDragon.TeamSnakemouth.Cards
             ModEntry.Instance.KokoroApi.Actions.MakeContinued(id3, new ADrawCard
             {
               count = 2
-            }),
-            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id3, new AEnergy
-            {
-              changeAmount = 1
             }),
                 };
           actions = cardActionList3;

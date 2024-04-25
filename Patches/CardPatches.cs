@@ -25,19 +25,56 @@ namespace NukeDragon.TeamSnakemouth.Patches
         int tpcost = tpAction.cost;
         int tpamount = state.ship.Get(ModEntry.Instance.TP_Status.Status);
 
-        int tpspacing = tpcost >= 5 ? 5 : 6;
+        int tpspacing = 6;
 
-        for (int i = 0; i < tpcost; i++)
+        int tpOneIcon = 0;
+        int tpFiveIcon = 0;
+        for (int i = 0; i < tpcost;)
+        {
+          if (i + 4 < tpcost)
+          {
+            tpFiveIcon++;
+            i += 5;
+          }
+          else
+          {
+            tpOneIcon++;
+            i++;
+          }
+        }
+        int tpOnesAmount = tpamount - (tpFiveIcon * 5);
+        if (tpOnesAmount < 1) tpOnesAmount = 0;
+        int tpOnesFulfilled = 0;
+        int tpOnesOff = 0;
+        for (int i = 0; i < tpOneIcon; i++)
+        {
+          if (i < tpOnesAmount)
+          {
+            tpOnesFulfilled++;
+          }
+          else tpOnesOff++;
+        }
+        for (int i = 0; i < tpOnesOff; i++) 
+        {
+          if (!dontDraw) Draw.Sprite(ModEntry.Instance.TPCostOff.Sprite, position.x, position.y, color: tpAction.disabled ? Colors.disabledIconTint : null);
+          position.x += tpspacing;
+        }
+        for (int i = 0; i < tpOnesFulfilled; i++)
+        {
+          if (!dontDraw) Draw.Sprite(ModEntry.Instance.TPCost.Sprite, position.x, position.y, color: tpAction.disabled ? Colors.disabledIconTint : null);
+          position.x += tpspacing;
+        }
+        for (int i = 0; i < tpFiveIcon; i++)
         {
           if (!dontDraw)
           {
-            if (i < tpamount)
+            if ((5 * (i+1)) - 1 < tpamount)
             {
-              Draw.Sprite(ModEntry.Instance.TPCost.Sprite, position.x, position.y);
+              Draw.Sprite(ModEntry.Instance.FiveTPCost.Sprite, position.x, position.y, color: tpAction.disabled ? Colors.disabledIconTint : null);
             }
             else
             {
-              Draw.Sprite(ModEntry.Instance.TPCostOff.Sprite, position.x, position.y);
+              Draw.Sprite(ModEntry.Instance.FiveTPCostOff.Sprite, position.x, position.y, color: tpAction.disabled ? Colors.disabledIconTint : null);
             }
           }
           position.x += tpspacing;
@@ -64,7 +101,7 @@ namespace NukeDragon.TeamSnakemouth.Patches
           position.x += 2;
           if (!dontDraw)
           {
-            Draw.Sprite(ModEntry.Instance.FrozenModifierSprite.Sprite, position.x, position.y);
+            Draw.Sprite(ModEntry.Instance.FrozenModifierSprite.Sprite, position.x, position.y, color: aattack.disabled ? Colors.disabledIconTint : null);
           }
           position.x += SpriteLoader.Get(ModEntry.Instance.FrozenModifierSprite.Sprite)!.Width;
           __result = (int)position.x - initialX;

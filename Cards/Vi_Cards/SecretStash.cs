@@ -54,7 +54,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                     action = new AHeal
                       {
                       targetPlayer = true,
-                      healAmount = 1
+                      healAmount = 1,
+                      canRunAfterKill = true,
                       }
                   }
                 };
@@ -69,7 +70,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                     action = new AHeal
                       {
                       targetPlayer = true,
-                      healAmount = 2
+                      healAmount = 2,
+                      canRunAfterKill=true,
                       }
                   }
                 };
@@ -84,7 +86,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                     action = new AHeal
                       {
                       targetPlayer = true,
-                      healAmount = 1
+                      healAmount = 1,
+                      canRunAfterKill=true
                       }
                   }
                 };

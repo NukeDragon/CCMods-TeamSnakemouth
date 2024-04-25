@@ -47,12 +47,6 @@ namespace NukeDragon.TeamSnakemouth.Cards
       {
         case Upgrade.None:
           Guid id1 = new Guid();
-          Missile missile1 = new Missile()
-          {
-            missileType = ModEntry.Instance.ice,
-            yAnimation = 0,
-            targetPlayer = false,
-          };
           List<CardAction> cardActionList1 = new List<CardAction>()
                 {
              new ATPCostAction
@@ -62,16 +56,31 @@ namespace NukeDragon.TeamSnakemouth.Cards
              },
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id1, new ASpawn()
             {
-              thing = missile1,
+              thing = new Missile()
+          {
+            missileType = ModEntry.Instance.ice,
+            yAnimation = 0,
+            targetPlayer = false,
+          },
               offset = -1
             }),
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id1, new ASpawn()
             {
-              thing = missile1
+              thing = new Missile()
+          {
+            missileType = ModEntry.Instance.ice,
+            yAnimation = 0,
+            targetPlayer = false,
+          }
             }),
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id1, new ASpawn()
             {
-              thing = missile1,
+              thing = new Missile()
+          {
+            missileType = ModEntry.Instance.ice,
+            yAnimation = 0,
+            targetPlayer = false,
+          },
               offset = 1
             }),
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id1, new AStatus()
@@ -85,12 +94,6 @@ namespace NukeDragon.TeamSnakemouth.Cards
           break;
         case Upgrade.A:
           Guid id2 = new Guid();
-          Missile missile2 = new Missile()
-          {
-            missileType = ModEntry.Instance.ice,
-            yAnimation = 0,
-            targetPlayer = false,
-          };
           List<CardAction> cardActionList2 = new List<CardAction>()
           {
                 new ATPCostAction
@@ -100,16 +103,31 @@ namespace NukeDragon.TeamSnakemouth.Cards
                 },
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id2, new ASpawn()
             {
-              thing = missile2,
+              thing = new Missile()
+          {
+            missileType = ModEntry.Instance.ice,
+            yAnimation = 0,
+            targetPlayer = false,
+          },
               offset = -1
             }),
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id2, new ASpawn()
             {
-              thing = missile2
+              thing = new Missile()
+          {
+            missileType = ModEntry.Instance.ice,
+            yAnimation = 0,
+            targetPlayer = false,
+          }
             }),
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id2, new ASpawn()
             {
-              thing = missile2,
+              thing = new Missile()
+          {
+            missileType = ModEntry.Instance.ice,
+            yAnimation = 0,
+            targetPlayer = false,
+          },
               offset = 1
             }),
                     ModEntry.Instance.KokoroApi.Actions.MakeContinued(id2, new AStatus()
@@ -122,26 +140,35 @@ namespace NukeDragon.TeamSnakemouth.Cards
           actions = cardActionList2;
           break;
         case Upgrade.B:
-          Missile missile3 = new Missile()
-          {
-            missileType = ModEntry.Instance.ice,
-            yAnimation = 0,
-            targetPlayer = false,
-          };
           List<CardAction> cardActionList3 = new List<CardAction>()
                 {
                    new ASpawn()
                    {
-                     thing = missile3,
+                     thing = new Missile()
+          {
+            missileType = ModEntry.Instance.ice,
+            yAnimation = 0,
+            targetPlayer = false,
+          },
                      offset = -1
                    },
                    new ASpawn()
                    {
-                     thing = missile3
+                     thing = new Missile()
+          {
+            missileType = ModEntry.Instance.ice,
+            yAnimation = 0,
+            targetPlayer = false,
+          }
                    },
                    new ASpawn()
                    {
-                     thing = missile3,
+                     thing = new Missile()
+          {
+            missileType = ModEntry.Instance.ice,
+            yAnimation = 0,
+            targetPlayer = false,
+          },
                      offset = 1
                    },
                    new AStatus()

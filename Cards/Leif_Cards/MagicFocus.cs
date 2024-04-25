@@ -14,7 +14,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
         Meta = new()
         {
           deck = ModEntry.Instance.Leif_Deck.Deck,
-          rarity = Rarity.uncommon,
+          rarity = Rarity.common,
           upgradesTo = [Upgrade.A, Upgrade.B]
         },
         Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "MagicFocus", "name"]).Localize

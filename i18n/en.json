@@ -108,6 +108,26 @@
     "CycloneBarrage": {
       "name": "Cyclone Barrage"
     },
+    "TangyCarpaccio": {
+      "name": "Tangy Carpaccio"
+    },
+    "MiracleShake": {
+      "name": "Miracle Shake"
+    },
+    "PoisonDart": {
+      "name": "Poison Dart"
+    },
+    "PrepareDarts": {
+      "name": "Prepare Darts",
+      "description": {
+        "None": "<c=keyword>3 TP:</c>\nAdd 2 <c=card>Poison Darts</c> to the top of your draw pile.",
+        "A": "<c=keyword>3 TP:</c>\nAdd 3 <c=card>Poison Darts</c> to the top of your draw pile.",
+        "B": "<c=keyword>1 TP:</c>\nAdd a <c=card>Poison Darts</c> to your hand."
+      }
+    },
+    "HardCharge": {
+      "name":  "Hard Charge"
+    },
     "PiercingBlow": {
       "name": "Piercing Blow"
     },
@@ -120,9 +140,9 @@
     "RallyCry": {
       "name": "Rally Cry",
       "description": {
-        "None": "<c=keyword>5 TP:</c>\nGain <c=status>Charge</c> = your missing hull.",
-        "A": "<c=keyword>5 TP:</c>\nGain <c=status>Charge</c> = your missing hull.",
-        "B": "<c=keyword>6 TP:</c>\nGain <c=status>Charge</c> = your missing hull.\n<c=healing>Heal 1</c>"
+        "None": "<c=keyword>5 TP:</c>\n<c=status>Charge</c> = your missing hull.\n({{num}})",
+        "A": "<c=keyword>5 TP:</c>\n<c=status>Charge</c> = your missing hull.\n({{num}})",
+        "B": "<c=keyword>6 TP:</c>\n<c=status>Charge</c> = your missing hull. ({{num}})\n<c=healing>Heal 1</c>"
       }
     },
     "BraceSelf": {
@@ -147,6 +167,27 @@
         "B": "Attack for <c=keyword>{{dmg}}</c> damage. If it kills, gain <c=keyword>3 Max TP</c>."
       }
     },
+    "HeavyBlow": {
+      "name": "Heavy Blow"
+    },
+    "DeepTaunt": {
+      "name": "Deep Taunt"
+    },
+    "PebbleToss": {
+      "name": "Pebble Toss"
+    },
+    "BoulderToss": {
+      "name": "Boulder Toss"
+    },
+    "Barricade": {
+      "name": "Barricade"
+    },
+    "DashThrough": {
+      "name": "Dash Through"
+    },
+    "TeamPlan": {
+      "name":  "Team Plan"
+    },
     "IcicleShot": {
       "name": "Ice Shot"
     },
@@ -169,7 +210,28 @@
       "name": "Icicle"
     },
     "IceRain": {
-      "name":  "Ice Rain"
+      "name": "Ice Rain"
+    },
+    "Rejuvenate": {
+      "name": "Rejuvenate"
+    },
+    "FrostEjection": {
+      "name": "Frost Ejection"
+    },
+    "Permafrost": {
+      "name": "Permafrost"
+    },
+    "BubbleShield": {
+      "name": "Bubble Shield"
+    },
+    "Energize": {
+      "name": "Energize"
+    },
+    "ChargeUp": {
+      "name": "Charge Up"
+    },
+    "TeamCharge": {
+      "name":  "Team Charge"
     },
     "Sturdy": {
       "name": "Sturdy"
@@ -189,8 +251,8 @@
       "description": "At the start of your turn, take <c=downside>{0} non-fatal damage</c> and decrease this by 1."
     },
     "Charge": {
-      "name": "Charge",
-      "description": "Your next card with active attack actions have it's damage increased by {0}."
+      "name": "{{name}} Charge",
+      "description": "Your next {{name}} card with active attack actions have it's damage increased by {0}."
     },
     "Taunted": {
       "name": "Taunted",
@@ -203,6 +265,10 @@
     "Inspiration": {
       "name": "{{name}} Is Inspired!",
       "description": "All of {{name}}'s card attacks deal +{0} damage."
+    },
+    "Permafrost": {
+      "name": "Permafrost",
+      "description":  "At the start of this turn, {0} of this ship's part will become <c=keyword>Frozen<c/>."
     }
   },
   "dialogue": {
@@ -216,6 +282,20 @@
     "frozen": {
       "name": "Frozen",
       "description": "While this part is <c=keyword>frozen</c>, it is stunned.\nAttacks against this part will deal +1 damage and remove <c=keyword>frozen</c>.\nRemoved at end of enemy's turn."
+    },
+    "actions": {
+      "inspire": {
+        "name": "Inspire",
+        "description": "Choose a character, they will deal <c=boldPink>+{{amount}}</c> damage for the rest of combat."
+      },
+      "charge": {
+        "name": "Charge",
+        "description": "Choose a character, their next card with active attack actions will have its damage increased by <c=boldPink>{{amount}}</c>."
+      },
+      "chargeTeam": {
+        "name": "Charge Team",
+        "description":  "Each character in your crew will have their next card with active attack actions have its damage increased by <c=boldPink>{{amount}}</c>."
+      }
     }
   }
 }

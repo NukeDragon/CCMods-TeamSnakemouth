@@ -19,7 +19,14 @@ namespace NukeDragon.TeamSnakemouth
       if (currentTP < cost || action == null) return;
       foreach (var hook in ModEntry.Instance.HookManager.GetHooksWithProxies(ModEntry.Instance.KokoroApi, s.EnumerateAllArtifacts())) hook.OnATPCost(this, s, c);
       s.ship.Add(ModEntry.Instance.TP_Status.Status, -cost);
+      action.whoDidThis = this.whoDidThis;
       c.QueueImmediate(action);
+    }
+
+    public override List<Tooltip> GetTooltips(State s)
+    {
+      if (action == null) return new List<Tooltip>();
+      return action.GetTooltips(s);
     }
   }
 }

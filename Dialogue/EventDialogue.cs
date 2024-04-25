@@ -377,7 +377,7 @@ namespace NukeDragon.TeamSnakemouth
         new CustomSay()
         {
           who = leif,
-          Text = "I had never considered doing that before. Thanks.",
+          Text = "We had never considered doing that before. Thanks.",
           loopTag = "neutral"
         },
           new CustomSay()
@@ -420,7 +420,7 @@ namespace NukeDragon.TeamSnakemouth
       DB.story.GetNode("AbandonedShipyard_Repaired")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
       {
         who = leif,
-        Text = "How anticlimactic. I was expecting something to happen.",
+        Text = "How anticlimactic. We were expecting something to happen.",
         loopTag = "neutral"
       });
       DB.story.GetNode("CrystallizedFriendEvent")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
@@ -514,7 +514,7 @@ namespace NukeDragon.TeamSnakemouth
       DB.story.GetNode("CrystallizedFriendEvent")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
       {
         who = leif,
-        Text = "I do like the cryosleep.",
+        Text = "We do like the cryosleep.",
         loopTag = "thinking"
       });
       DB.story.all[$"CrystallizedFriendEvent_{leif}"] = new()
@@ -552,6 +552,181 @@ namespace NukeDragon.TeamSnakemouth
             who = leif,
             Text = "Ah. Hello.",
             loopTag = "neutral"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{kabbu}_Multi_0"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [kabbu],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Welcome!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = kabbu,
+            Text = "Greetings!",
+            loopTag = "explaining",
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{kabbu}_Multi_1"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [kabbu],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Heya!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = kabbu,
+            Text = "What a cozy little shop!",
+            loopTag = "thinking",
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{vi}_Multi_0"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [vi],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Hello!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = vi,
+            Text = "Hi!",
+            loopTag = "neutral",
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{vi}_Multi_1"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [vi],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Howdy!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = vi,
+            Text = "What are your prices?",
+            loopTag = "unamused",
+          },
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Uh? Free!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = vi,
+            Text = "Wow!",
+            loopTag = "happy",
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{leif}_Multi_0"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [leif],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = leif,
+            Text = "What's up?",
+            loopTag = "neutral"
+          },
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "There is no up, we're in space!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = leif,
+            Text = "You're obviously sitting down.",
+            loopTag = "neutral"
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{leif}_Multi_1"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [leif],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "How's it going?",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = leif,
+            Text = "Well, we've made it this far...",
+            loopTag = "neutral"
+          },
+          new Jump()
+          {
+            key = "NewShop"
           }
         ]
       };

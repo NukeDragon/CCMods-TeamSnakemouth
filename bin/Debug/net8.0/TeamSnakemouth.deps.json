@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "TeamSnakemouth/1.0.0": {
+      "TeamSnakemouth/0.1.0": {
         "dependencies": {
           "EnumByNameSourceGenerator": "1.1.1",
           "Lib.Harmony": "2.2.2",
@@ -414,7 +414,7 @@
     }
   },
   "libraries": {
-    "TeamSnakemouth/1.0.0": {
+    "TeamSnakemouth/0.1.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Collections.Generic;
 
-namespace NukeDragon.TeamSnakemouth.Cards
+namespace NukeDragon.TeamSnakemouth
 {
   internal sealed class TemplateCard : Card, ICard
   {
@@ -14,7 +14,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
         Meta = new()
         {
           //deck = ModEntry.Instance..Deck,
-          rarity = Rarity.common,
+          //rarity = Rarity.,
           upgradesTo = [Upgrade.A, Upgrade.B]
         },
         Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "", "name"]).Localize

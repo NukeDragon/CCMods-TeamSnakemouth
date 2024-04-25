@@ -64,12 +64,12 @@ namespace NukeDragon.TeamSnakemouth.Cards
                 {
            new ATPCostAction()
             {
-              cost = 2,
+              cost = 3,
               action = new AStatus()
                       {
                         targetPlayer = false,
                         status = ModEntry.Instance.Taunted_Status.Status,
-                        statusAmount = 1
+                        statusAmount = 2
                       }
             }
                 };
@@ -80,7 +80,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
                 {
             new ATPCostAction()
             {
-              cost = 3,
+              cost = 2,
               action = new AStatus()
                       {
                         targetPlayer = false,

@@ -16,9 +16,11 @@ namespace NukeDragon.TeamSnakemouth
 
     public int Mode = 0;
 
-    public int InspirationStatusAmount = 1;
+    public int statusAmount = 1;
 
     public Artifact? ArtifactChoice;
+
+    public Dictionary<Deck, IStatusEntry>? dictionary;
 
     public override bool GetShowOverworldPanels()
     => true;
@@ -54,15 +56,16 @@ namespace NukeDragon.TeamSnakemouth
       if (Mode  == 0) { return; }
       if (Mode == 1)
       {
+        if (dictionary == null) { return; }
         if (g.state.route is not Combat combat) return;
         IStatusEntry? entry;
         Deck deck = character.deckType.GetValueOrDefault();
-        if (!ModEntry.Instance.Inspired_Status_Dictionary.TryGetValue(deck, out entry)) return;
+        if (!dictionary.TryGetValue(deck, out entry)) return;
         if (entry == null) { return;}
         combat.Queue(new AStatus()
         {
           status = entry.Status,
-          statusAmount = InspirationStatusAmount,
+          statusAmount = statusAmount,
           targetPlayer = true
         });
         g.CloseRoute(this);

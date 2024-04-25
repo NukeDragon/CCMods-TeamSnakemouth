@@ -39,7 +39,10 @@ namespace NukeDragon.TeamSnakemouth.Cards
           data.cost = 3;
           break;
       }
-      data.description = ModEntry.Instance.Localizations.Localize(["card", "RallyCry", "description", upgrade.ToString()]);
+      data.description = ModEntry.Instance.Localizations.Localize(["card", "RallyCry", "description", upgrade.ToString()], new
+      {
+        num = state.ship.hullMax - state.ship.hull
+      });
       return data;
     }
     public override List<CardAction> GetActions(State s, Combat c)
@@ -54,12 +57,10 @@ namespace NukeDragon.TeamSnakemouth.Cards
             new ATPCostAction()
               {
               cost = 5,
-              action = new AStatus
-                {
-              targetPlayer = true,
-              status = ModEntry.Instance.Charge_Status.Status,
-              statusAmount = num
-                }
+              action = new ACharge
+              {
+                statusAmount = num
+              }
               }
             };
           actions = cardActionList1;
@@ -71,12 +72,10 @@ namespace NukeDragon.TeamSnakemouth.Cards
             new ATPCostAction()
               {
               cost = 5,
-              action = new AStatus
-                {
-              targetPlayer = true,
-              status = ModEntry.Instance.Charge_Status.Status,
-              statusAmount = num2
-                }
+              action = new ACharge
+              {
+                statusAmount = num2
+              }
               }
                 };
           actions = cardActionList2;
@@ -91,12 +90,10 @@ namespace NukeDragon.TeamSnakemouth.Cards
               cost = 5,
               action = ModEntry.Instance.KokoroApi.Actions.MakeContinue(out id)
             },
-            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id, new AStatus()
-            {
-              targetPlayer = true,
-              status = ModEntry.Instance.Charge_Status.Status,
-              statusAmount = num3
-            }),
+            ModEntry.Instance.KokoroApi.Actions.MakeContinued(id, new ACharge
+              {
+                statusAmount = num3
+              }),
             ModEntry.Instance.KokoroApi.Actions.MakeContinued(id, new AHeal()
             {
               targetPlayer = true,

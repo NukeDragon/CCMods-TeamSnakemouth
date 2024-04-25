@@ -33,6 +33,35 @@ namespace NukeDragon.TeamSnakemouth
             }
           }
         }
+        if (__instance.Get(ModEntry.Instance.Permafrost_Status.Status) > 0)
+        {
+          List<Part> parts = [.. __instance.parts];
+          List<Part> targetParts = new List<Part>();
+          for (int i = 0; i < __instance.Get(ModEntry.Instance.Permafrost_Status.Status); i++)
+          {
+            if (parts.Count < 1) break;
+            Part part = parts.Random(s.rngActions);
+            if (part.type == PType.empty || part.GetDamageModifier() == ModEntry.Instance.frozen)
+            {
+              i--;
+            }
+            else
+            {
+              targetParts.Add(part);
+            }
+            parts.Remove(part);
+          }
+          foreach (Part part in targetParts)
+          {
+            int partx = __instance.parts.IndexOf(part);
+            c.QueueImmediate(new AFreeze
+            {
+              worldX = partx + __instance.x,
+              targetPlayer = false,
+              quick = true
+            });
+          }
+        }
       }
       if (__instance.Get(ModEntry.Instance.Taunted_Status.Status) > 0)
       {
@@ -44,7 +73,7 @@ namespace NukeDragon.TeamSnakemouth
         });
       }
     }
-    private static void OnBeginTurn_Postfix(Ship __instance, State s)
+    private static void OnBeginTurn_Postfix(Ship __instance, State s, Combat c)
     {
       if (__instance == s.ship)
       {
@@ -54,6 +83,35 @@ namespace NukeDragon.TeamSnakemouth
           if (pdm == ModEntry.Instance.frozen)
           {
             part.SetOverride2(new PDamMod?());
+          }
+        }
+        if (__instance.Get(ModEntry.Instance.Permafrost_Status.Status) > 0)
+        {
+          List<Part> parts = [.. __instance.parts];
+          List<Part> targetParts = new List<Part>();
+          for (int i = 0; i < __instance.Get(ModEntry.Instance.Permafrost_Status.Status); i++)
+          {
+            if (parts.Count < 1) break;
+            Part part = parts.Random(s.rngActions);
+            if (part.type == PType.empty)
+            {
+              i--;
+            }
+            else
+            {
+              targetParts.Add(part);
+            }
+            parts.Remove(part);
+          }
+          foreach (Part part in targetParts)
+          {
+            int partx = __instance.parts.IndexOf(part);
+            c.QueueImmediate(new AFreeze
+            {
+              worldX = partx + __instance.x,
+              targetPlayer = true,
+              quick = true
+            });
           }
         }
       }
