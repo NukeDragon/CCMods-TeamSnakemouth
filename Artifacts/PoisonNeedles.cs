@@ -26,7 +26,10 @@ namespace NukeDragon.TeamSnakemouth
         },
         Sprite = ModEntry.Instance.PoisonNeedlesSprite.Sprite, 
         Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "PoisonNeedles", "name"]).Localize,
-        Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "PoisonNeedles", "description"]).Localize
+        Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "PoisonNeedles", "description"], new
+        {
+          vicolor = ModEntry.Instance.Vi_Deck.Configuration.Definition.color.ToString(),
+        }).Localize
       });
     }
 
@@ -49,5 +52,7 @@ namespace NukeDragon.TeamSnakemouth
     {
       return counter;
     }
+
+    public override List<Tooltip>? GetExtraTooltips() => StatusMeta.GetTooltips(ModEntry.Instance.Poison_Status.Status, 1);
   }
 }

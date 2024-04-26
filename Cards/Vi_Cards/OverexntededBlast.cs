@@ -52,7 +52,7 @@ namespace NukeDragon.TeamSnakemouth
             },
             new AAttack
             {
-              damage = GetDmg(s, 3)
+              damage = GetDmg(s, 4)
             },
             new ATPCostAction
             {
@@ -78,7 +78,7 @@ namespace NukeDragon.TeamSnakemouth
             },
             new AAttack
             {
-              damage = GetDmg(s, 3)
+              damage = GetDmg(s, 4)
             },
             new ATPCostAction
             {
@@ -104,7 +104,7 @@ namespace NukeDragon.TeamSnakemouth
             },
             new AAttack
             {
-              damage = GetDmg(s, 3)
+              damage = GetDmg(s, 4)
             },
             new ATPCostAction
             {

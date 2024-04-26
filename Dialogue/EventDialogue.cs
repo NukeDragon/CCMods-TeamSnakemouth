@@ -69,6 +69,7 @@ namespace NukeDragon.TeamSnakemouth
           }
         ]
       };
+      /*
       DB.story.all[$"Vi_Intro"] = new() {
         once = true,
         type = NodeType.@event,
@@ -327,6 +328,7 @@ namespace NukeDragon.TeamSnakemouth
           }
         ]
       };
+      */
       DB.story.all[$"ChoiceCardRewardOfYourColorChoice_{kabbu}"] = new()
       {
         type = NodeType.@event,

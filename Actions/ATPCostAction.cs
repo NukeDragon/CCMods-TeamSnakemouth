@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nickel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,8 +26,23 @@ namespace NukeDragon.TeamSnakemouth
 
     public override List<Tooltip> GetTooltips(State s)
     {
-      if (action == null) return new List<Tooltip>();
-      return action.GetTooltips(s);
+      List<Tooltip> list = new List<Tooltip>();
+      list.Add(new GlossaryTooltip(key: $"{ModEntry.Instance.Package.Manifest.UniqueName}::TPCost")
+      {
+        Icon = ModEntry.Instance.TPCost.Sprite,
+        Title = ModEntry.Instance.Localizations.Localize(["tooltips", "actions","tpcost", "name"]),
+        Description = ModEntry.Instance.Localizations.Localize(["tooltips", "actions", "tpcost", "description"], new
+        {
+          amount = cost
+        }),
+        TitleColor = Colors.action
+      });
+      if (action == null) return list;
+      foreach (Tooltip tooltip in action.GetTooltips(s))
+      {
+        list.Add(tooltip);
+      }
+      return list;
     }
   }
 }

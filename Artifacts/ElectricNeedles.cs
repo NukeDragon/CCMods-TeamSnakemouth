@@ -25,7 +25,10 @@ namespace NukeDragon.TeamSnakemouth
         },
         Sprite = ModEntry.Instance.ElectricNeedlesSprite.Sprite,
         Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ElectricNeedles", "name"]).Localize,
-        Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ElectricNeedles", "description"]).Localize
+        Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ElectricNeedles", "description"], new
+        {
+          vicolor = ModEntry.Instance.Vi_Deck.Configuration.Definition.color.ToString(),
+        }).Localize
       });
     }
 
@@ -46,6 +49,13 @@ namespace NukeDragon.TeamSnakemouth
     public override int? GetDisplayNumber(State s)
     {
       return counter;
+    }
+
+    public override List<Tooltip>? GetExtraTooltips()
+    {
+      List<Tooltip> list = new List<Tooltip>();
+      list.Add(new TTGlossary("action.stun"));
+      return list;
     }
   }
 }

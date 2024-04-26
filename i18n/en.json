@@ -56,7 +56,7 @@
     },
     "EternalVenom": {
       "name": "ETERNAL VENOM",
-      "description": "Poison does not degrade naturally."
+      "description": "<c=status>Poison</c> does not degrade naturally."
     },
     "FreezeResistance": {
       "name": "FREEZE RESISTANCE",
@@ -72,11 +72,11 @@
     },
     "ElectricNeedles": {
       "name": "ELECTRIC NEEDLES",
-      "description": "Every 5 Vi attacks will stun."
+      "description": "Every 5 <c={{vicolor}}>Vi</c> attacks will stun."
     },
     "PoisonNeedles": {
       "name": "POISON NEEDLES",
-      "description": "Every 4 Vi attacks will apply 1 <c=status>poison</c>."
+      "description": "Every 4 <c={{vicolor}}>Vi</c> attacks will apply 1 <c=status>poison</c>."
     },
     "TPSaver": {
       "name": "TP SAVER",
@@ -253,7 +253,7 @@
     },
     "Frost": {
       "name": "Frost",
-      "description": "The opposite of <c=status>Heat</c>. At the start of your turn, if you have at least 1 of both <c=status>Heat</c> and <c=status>Frost</c>, lose 1 of both. If you ever have 3 or more Frost, <c=action>Flashfreeze</c>"
+      "description": "The opposite of <c=status>Heat</c>. At the start of your turn, if you have at least 1 of both <c=status>Heat</c> and <c=status>Frost</c>, lose 1 of both. If you ever have 3 or more Frost, <c=action>Flashfreeze</c> <c=downside>(Freeze all your parts and end your turn)</c>"
     },
     "Poison": {
       "name": "Poison",
@@ -303,7 +303,11 @@
       },
       "chargeTeam": {
         "name": "Charge Team",
-        "description":  "Each character in your crew will have their next card with active attack actions have its damage increased by <c=boldPink>{{amount}}</c>."
+        "description": "Each character in your crew will have their next card with active attack actions have its damage increased by <c=boldPink>{{amount}}</c>."
+      },
+      "tpcost": {
+        "name": "TP Cost",
+        "description": "Lose <c=boldPink>{{amount}}</c> <c=status>TP</c>. If you don't have enough, this action does not happen."
       }
     }
   }

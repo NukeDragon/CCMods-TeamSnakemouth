@@ -39,5 +39,7 @@ namespace NukeDragon.TeamSnakemouth
         canRunAfterKill = true
       });
     }
+
+    public override List<Tooltip>? GetExtraTooltips() => StatusMeta.GetTooltips(ModEntry.Instance.TP_Status.Status, 1);
   }
 }

@@ -58,5 +58,7 @@ namespace NukeDragon.TeamSnakemouth
     {
       return counter;
     }
+
+    public override List<Tooltip>? GetExtraTooltips() => StatusMeta.GetTooltips(Status.shield, 1);
   }
 }
