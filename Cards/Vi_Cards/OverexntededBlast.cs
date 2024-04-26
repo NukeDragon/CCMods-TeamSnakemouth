@@ -14,7 +14,7 @@ namespace NukeDragon.TeamSnakemouth
         Meta = new()
         {
           deck = ModEntry.Instance.Vi_Deck.Deck,
-          rarity = Rarity.uncommon,
+          rarity = Rarity.common,
           upgradesTo = [Upgrade.A, Upgrade.B]
         },
         Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "OverextendedBlast", "name"]).Localize
@@ -30,6 +30,7 @@ namespace NukeDragon.TeamSnakemouth
         case Upgrade.None:
           break;
         case Upgrade.A:
+          data.cost = 0;
           break;
         case Upgrade.B:
           break;
@@ -44,18 +45,78 @@ namespace NukeDragon.TeamSnakemouth
         case Upgrade.None:
           List<CardAction> cardActionList1 = new List<CardAction>()
                 {
+            new AHurt
+            {
+              targetPlayer = true,
+              hurtAmount = 1,
+            },
+            new AAttack
+            {
+              damage = GetDmg(s, 3)
+            },
+            new ATPCostAction
+            {
+              cost = 3,
+              action = new AHeal
+              {
+                targetPlayer = true,
+                healAmount = 1,
+                canRunAfterKill = true,
+              },
+              canRunAfterKill = true
+            }
                 };
           actions = cardActionList1;
           break;
         case Upgrade.A:
           List<CardAction> cardActionList2 = new List<CardAction>()
                 {
+            new AHurt
+            {
+              targetPlayer = true,
+              hurtAmount = 1,
+            },
+            new AAttack
+            {
+              damage = GetDmg(s, 3)
+            },
+            new ATPCostAction
+            {
+              cost = 3,
+              action = new AHeal
+              {
+                targetPlayer = true,
+                healAmount = 1,
+                canRunAfterKill = true,
+              },
+              canRunAfterKill = true
+            }
                 };
           actions = cardActionList2;
           break;
         case Upgrade.B:
           List<CardAction> cardActionList3 = new List<CardAction>()
                 {
+            new AHurt
+            {
+              targetPlayer = true,
+              hurtAmount = 1,
+            },
+            new AAttack
+            {
+              damage = GetDmg(s, 3)
+            },
+            new ATPCostAction
+            {
+              cost = 6,
+              action = new AHeal
+              {
+                targetPlayer = true,
+                healAmount = 2,
+                canRunAfterKill = true,
+              },
+              canRunAfterKill = true
+            }
                 };
           actions = cardActionList3;
           break;

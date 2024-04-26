@@ -53,5 +53,9 @@ namespace NukeDragon.TeamSnakemouth
         });
       }
     }
+    public override List<Tooltip>? GetExtraTooltips()
+    {
+      return StatusMeta.GetTooltips(Status.tempShield, 1);
+    }
   }
 }

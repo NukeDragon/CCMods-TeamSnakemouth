@@ -188,7 +188,10 @@ public sealed class ModEntry : SimpleMod
     typeof(MiracleShake),
     typeof(PoisonDart),
     typeof(PrepareDarts),
-    typeof(HardCharge)
+    typeof(HardCharge),
+    typeof(OverextendedBlast),
+    typeof(VenomBurst),
+    typeof(HurricaneBlast)
   ];
   internal static IReadOnlyList<Type> Leif_StarterCard_Types { get; } = [
     typeof(IcicleShot),

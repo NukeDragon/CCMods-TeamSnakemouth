@@ -14,7 +14,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
         Meta = new()
         {
           deck = ModEntry.Instance.Vi_Deck.Deck,
-          rarity = Rarity.uncommon,
+          rarity = Rarity.common,
           upgradesTo = [Upgrade.A, Upgrade.B]
         },
         Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "SecretStash", "name"]).Localize
@@ -56,7 +56,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                       targetPlayer = true,
                       healAmount = 1,
                       canRunAfterKill = true,
-                      }
+                      },
+                    canRunAfterKill = true,
                   }
                 };
           actions = cardActionList1;
@@ -72,7 +73,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                       targetPlayer = true,
                       healAmount = 2,
                       canRunAfterKill=true,
-                      }
+                      },
+                    canRunAfterKill = true,
                   }
                 };
           actions = cardActionList2;
@@ -88,7 +90,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                       targetPlayer = true,
                       healAmount = 1,
                       canRunAfterKill=true
-                      }
+                      },
+                    canRunAfterKill = true,
                   }
                 };
           actions = cardActionList3;

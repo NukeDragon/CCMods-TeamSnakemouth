@@ -40,5 +40,11 @@ namespace NukeDragon.TeamSnakemouth
         this.Pulse();
       }
     }
+    public override List<Tooltip>? GetExtraTooltips()
+    {
+      List<Tooltip> tooltips = new List<Tooltip>();
+      tooltips.Add(new TTGlossary("action.attackPiercing"));
+      return tooltips;
+    }
   }
 }
