@@ -159,6 +159,10 @@ public sealed class ModEntry : SimpleMod
   internal ISpriteEntry Kabbu_Explains_1 { get; }
   internal ISpriteEntry Kabbu_Explains_2 { get; }
   internal ISpriteEntry Kabbu_Explains_3 { get; }
+  internal ISpriteEntry Kabbu_Panic_0 { get; }
+  internal ISpriteEntry Kabbu_Panic_1 { get; }
+  internal ISpriteEntry Kabbu_Panic_2 { get; }
+  internal ISpriteEntry Kabbu_Panic_3 { get; }
   internal ISpriteEntry Kabbu_Sad_0 { get; }
   internal ISpriteEntry Kabbu_Sad_1 { get; }
   internal ISpriteEntry Kabbu_Sad_2 { get; }
@@ -410,6 +414,10 @@ public sealed class ModEntry : SimpleMod
     Kabbu_Explains_1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_explains_1.png"));
     Kabbu_Explains_2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_explains_2.png"));
     Kabbu_Explains_3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_explains_3.png"));
+    Kabbu_Panic_0 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_panic_0.png"));
+    Kabbu_Panic_1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_panic_1.png"));
+    Kabbu_Panic_2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_panic_2.png"));
+    Kabbu_Panic_3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_panic_3.png"));
     Kabbu_Sad_0 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_sad_0.png"));
     Kabbu_Sad_1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_sad_1.png"));
     Kabbu_Sad_2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_sad_2.png"));
@@ -963,6 +971,18 @@ public sealed class ModEntry : SimpleMod
                 Kabbu_Thinking_1.Sprite,
                 Kabbu_Thinking_2.Sprite,
                 Kabbu_Thinking_3.Sprite
+        }
+    });
+    Helper.Content.Characters.RegisterCharacterAnimation("kabbu_panic", new CharacterAnimationConfiguration()
+    {
+      Deck = Kabbu_Deck.Deck,
+      LoopTag = "panic",
+      Frames = new[]
+        {
+                Kabbu_Panic_0.Sprite,
+                Kabbu_Panic_1.Sprite,
+                Kabbu_Panic_2.Sprite,
+                Kabbu_Panic_3.Sprite
         }
     });
 
