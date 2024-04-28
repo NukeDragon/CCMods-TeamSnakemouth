@@ -12,6 +12,7 @@ namespace NukeDragon.TeamSnakemouth
 {
   internal class ElectricNeedles : Artifact, IArtifact
   {
+    int counter = 0;
     public static void Register(IModHelper helper)
     {
       helper.Content.Artifacts.RegisterArtifact("ElectricNeedles", new()
@@ -20,12 +21,41 @@ namespace NukeDragon.TeamSnakemouth
         Meta = new()
         {
           owner = ModEntry.Instance.Vi_Deck.Deck,
-          pools = [ArtifactPool.EventOnly],
+          pools = [ArtifactPool.Common],
         },
         Sprite = ModEntry.Instance.ElectricNeedlesSprite.Sprite,
         Name = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ElectricNeedles", "name"]).Localize,
-        Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ElectricNeedles", "description"]).Localize
+        Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ElectricNeedles", "description"], new
+        {
+          vicolor = ModEntry.Instance.Vi_Deck.Configuration.Definition.color.ToString(),
+        }).Localize
       });
+    }
+
+    public void ModifyAAttack(ref AAttack attack, State s, Combat c)
+    {
+      if (attack.whoDidThis == ModEntry.Instance.Vi_Deck.Deck)
+      {
+        counter++;
+        if (counter >= 5)
+        {
+          attack.stunEnemy = true;
+          this.Pulse();
+          counter = 0;
+        }
+      }
+    }
+
+    public override int? GetDisplayNumber(State s)
+    {
+      return counter;
+    }
+
+    public override List<Tooltip>? GetExtraTooltips()
+    {
+      List<Tooltip> list = new List<Tooltip>();
+      list.Add(new TTGlossary("action.stun"));
+      return list;
     }
   }
 }

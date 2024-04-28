@@ -27,5 +27,10 @@ namespace NukeDragon.TeamSnakemouth
         Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "ExtraFreeze", "description"]).Localize
       });
     }
+
+    public override List<Tooltip>? GetExtraTooltips()
+    {
+      return FrozenManager.GetTooltips();
+    }
   }
 }

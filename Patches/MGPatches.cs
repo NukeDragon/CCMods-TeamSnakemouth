@@ -24,6 +24,7 @@ internal static class MGPatches
       return;
     EventDialogue.Inject();
     ArtifactDialogue.Inject();
+    CombatDialogue.Inject();
     DB.eventChoiceFns["KnightForceDuel"] = typeof(ExtraChoiceFunc).GetMethod("KnightForceDuel", AccessTools.all)!;
   }
 }

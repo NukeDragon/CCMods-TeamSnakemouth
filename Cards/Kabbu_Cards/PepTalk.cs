@@ -54,8 +54,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                 {
              new ATPCostAction()
              {
-               Action = aInspire,
-               Cost = 7
+               action = aInspire,
+               cost = 7
              }
                 };
           actions = cardActionList1;
@@ -69,8 +69,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                 {
              new ATPCostAction()
              {
-               Action = aInspire2,
-               Cost = 7
+               action = aInspire2,
+               cost = 7
              }
                 };
           actions = cardActionList2;
@@ -84,8 +84,8 @@ namespace NukeDragon.TeamSnakemouth.Cards
                 {
              new ATPCostAction()
              {
-               Action = aInspire3,
-               Cost = 7
+               action = aInspire3,
+               cost = 7
              }
                 };
           actions = cardActionList3;

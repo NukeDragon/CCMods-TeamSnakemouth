@@ -45,23 +45,16 @@ namespace NukeDragon.TeamSnakemouth.Cards
         case Upgrade.None:
           List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-            ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 5
-                      ),
-                      action: new AStatus
+            new ATPCostAction
+            {
+              cost = 5,
+              action = new AStatus
                       {
                       targetPlayer = false,
                       status = ModEntry.Instance.Frost_Status.Status,
                       statusAmount = 3
                       }
-                    ),
+            },
             new AStatus
             {
               targetPlayer = true,
@@ -74,23 +67,16 @@ namespace NukeDragon.TeamSnakemouth.Cards
         case Upgrade.A:
           List<CardAction> cardActionList2 = new List<CardAction>()
           {
-            ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 4
-                      ),
-                      action: new AStatus
+             new ATPCostAction
+            {
+              cost = 4,
+              action = new AStatus
                       {
                       targetPlayer = false,
                       status = ModEntry.Instance.Frost_Status.Status,
                       statusAmount = 3
                       }
-                    ),
+            },
             new AStatus
             {
               targetPlayer = true,
@@ -103,23 +89,16 @@ namespace NukeDragon.TeamSnakemouth.Cards
         case Upgrade.B:
           List<CardAction> cardActionList3 = new List<CardAction>()
           {
-            ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 5
-                      ),
-                      action: new AStatus
+             new ATPCostAction
+            {
+              cost = 5,
+              action = new AStatus
                       {
                       targetPlayer = false,
                       status = ModEntry.Instance.Frost_Status.Status,
                       statusAmount = 3
                       }
-                    )
+            }
           };
           actions = cardActionList3;
           break;

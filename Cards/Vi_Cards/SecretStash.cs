@@ -14,7 +14,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
         Meta = new()
         {
           deck = ModEntry.Instance.Vi_Deck.Deck,
-          rarity = Rarity.uncommon,
+          rarity = Rarity.common,
           upgradesTo = [Upgrade.A, Upgrade.B]
         },
         Name = ModEntry.Instance.AnyLocalizations.Bind(["card", "SecretStash", "name"]).Localize
@@ -48,67 +48,51 @@ namespace NukeDragon.TeamSnakemouth.Cards
         case Upgrade.None:
           List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-                  ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 4
-                      ),
-                      action: new AHeal
+                  new ATPCostAction
+                  {
+                    cost = 4,
+                    action = new AHeal
                       {
                       targetPlayer = true,
-                      healAmount = 1
-                      }
-                    )
+                      healAmount = 1,
+                      canRunAfterKill = true,
+                      },
+                    canRunAfterKill = true,
+                  }
                 };
           actions = cardActionList1;
           break;
         case Upgrade.A:
           List<CardAction> cardActionList2 = new List<CardAction>()
                 {
-                  ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 6
-                      ),
-                      action: new AHeal
+                   new ATPCostAction
+                  {
+                    cost = 7,
+                    action = new AHeal
                       {
                       targetPlayer = true,
-                      healAmount = 2
-                      }
-                    )
+                      healAmount = 2,
+                      canRunAfterKill=true,
+                      },
+                    canRunAfterKill = true,
+                  }
                 };
           actions = cardActionList2;
           break;
         case Upgrade.B:
           List<CardAction> cardActionList3 = new List<CardAction>()
                 {
-
-                                     ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 3
-                      ),
-                      action: new AHeal
+                new ATPCostAction
+                  {
+                    cost = 3,
+                    action = new AHeal
                       {
                       targetPlayer = true,
-                      healAmount = 1
-                      }
-                    )
+                      healAmount = 1,
+                      canRunAfterKill=true
+                      },
+                    canRunAfterKill = true,
+                  }
                 };
           actions = cardActionList3;
           break;

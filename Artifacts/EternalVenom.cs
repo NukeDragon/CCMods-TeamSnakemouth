@@ -27,5 +27,7 @@ namespace NukeDragon.TeamSnakemouth
         Description = ModEntry.Instance.AnyLocalizations.Bind(["artifact", "EternalVenom", "description"]).Localize
       });
     }
+
+    public override List<Tooltip>? GetExtraTooltips() => StatusMeta.GetTooltips(ModEntry.Instance.Poison_Status.Status, 1);
   }
 }

@@ -16,9 +16,11 @@ namespace NukeDragon.TeamSnakemouth
 
     public int Mode = 0;
 
-    public int InspirationStatusAmount = 1;
+    public int statusAmount = 1;
 
     public Artifact? ArtifactChoice;
+
+    public Dictionary<Deck, IStatusEntry>? dictionary;
 
     public override bool GetShowOverworldPanels()
     => true;
@@ -54,15 +56,16 @@ namespace NukeDragon.TeamSnakemouth
       if (Mode  == 0) { return; }
       if (Mode == 1)
       {
+        if (dictionary == null) { return; }
         if (g.state.route is not Combat combat) return;
         IStatusEntry? entry;
         Deck deck = character.deckType.GetValueOrDefault();
-        if (!ModEntry.Instance.Inspired_Status_Dictionary.TryGetValue(deck, out entry)) return;
+        if (!dictionary.TryGetValue(deck, out entry)) return;
         if (entry == null) { return;}
         combat.Queue(new AStatus()
         {
           status = entry.Status,
-          statusAmount = InspirationStatusAmount,
+          statusAmount = statusAmount,
           targetPlayer = true
         });
         g.CloseRoute(this);
@@ -102,10 +105,31 @@ namespace NukeDragon.TeamSnakemouth
           if (g.state.artifacts.Contains(artifact1)) g.state.artifacts.Remove(artifact1);
           character.artifacts.Add(artifact1);
         }
-        g.CloseRoute(this);
         if (ArtifactChoice is PoisonAttacker)
         {
           PoisonAttacker? artifact1 = ArtifactChoice as PoisonAttacker;
+          artifact1!.AssignedDeck = character.deckType;
+          foreach (Character character1 in g.state.characters)
+          {
+            if (character1.artifacts.Contains(artifact1)) character1.artifacts.Remove(artifact1);
+          }
+          if (g.state.artifacts.Contains(artifact1)) g.state.artifacts.Remove(artifact1);
+          character.artifacts.Add(artifact1);
+        }
+        if (ArtifactChoice is AntlionJaws)
+        {
+          AntlionJaws? artifact1 = ArtifactChoice as AntlionJaws;
+          artifact1!.AssignedDeck = character.deckType;
+          foreach (Character character1 in g.state.characters)
+          {
+            if (character1.artifacts.Contains(artifact1)) character1.artifacts.Remove(artifact1);
+          }
+          if (g.state.artifacts.Contains(artifact1)) g.state.artifacts.Remove(artifact1);
+          character.artifacts.Add(artifact1);
+        }
+        if (ArtifactChoice is DefenseExchange)
+        {
+          DefenseExchange? artifact1 = ArtifactChoice as DefenseExchange;
           artifact1!.AssignedDeck = character.deckType;
           foreach (Character character1 in g.state.characters)
           {

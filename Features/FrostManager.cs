@@ -81,4 +81,27 @@ namespace NukeDragon.TeamSnakemouth
       return true;
     }
   }
+  internal class FlashFreezeTrigger
+  {
+    public FlashFreezeTrigger()
+    {
+      ModEntry.Instance.Helper.Events.RegisterAfterArtifactsHook(nameof(Artifact.OnQueueEmptyDuringPlayerTurn), (State state, Combat combat) =>
+      {
+        if (state.ship.Get(ModEntry.Instance.Frost_Status.Status) >= 3)
+        {
+          combat.QueueImmediate(new AFlashFreeze()
+          {
+            targetPlayer = true
+          });
+        }
+        if (combat.otherShip.Get(ModEntry.Instance.Frost_Status.Status) >= 3)
+        {
+          combat.QueueImmediate(new AFlashFreeze()
+          {
+            targetPlayer = false
+          });
+        }
+      }, 0);
+    }
+  }
 }

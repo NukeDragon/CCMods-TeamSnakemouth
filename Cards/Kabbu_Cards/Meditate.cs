@@ -48,6 +48,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
                       targetPlayer = true,
                       status = ModEntry.Instance.TP_Status.Status,
                       statusAmount = 2,
+                      canRunAfterKill = true
                     }
                 };
           actions = cardActionList1;
@@ -60,6 +61,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
                       targetPlayer = true,
                       status = ModEntry.Instance.TP_Status.Status,
                       statusAmount = 3,
+                      canRunAfterKill= true
                     }
                 };
           actions = cardActionList2;
@@ -72,6 +74,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
                       targetPlayer = true,
                       status = ModEntry.Instance.TP_Status.Status,
                       statusAmount = 1,
+                      canRunAfterKill = true
                     }
                 };
           actions = cardActionList3;

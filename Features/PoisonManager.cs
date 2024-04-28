@@ -10,9 +10,9 @@ namespace NukeDragon.TeamSnakemouth
   {
     public static void ApplyPatches(Harmony harmony)
     {
-      harmony.Patch(AccessTools.DeclaredMethod(typeof(Ship), nameof(Ship.OnBeginTurn)), postfix: new HarmonyMethod(typeof(PoisonManager), nameof(OnBeginTurn_Postfix)));
+      harmony.Patch(AccessTools.DeclaredMethod(typeof(Ship), nameof(Ship.OnAfterTurn)), postfix: new HarmonyMethod(typeof(PoisonManager), nameof(OnAfterTurn_Postfix)));
     }
-    private static void OnBeginTurn_Postfix(Ship __instance, State s, Combat c)
+    private static void OnAfterTurn_Postfix(Ship __instance, State s, Combat c)
     {
       if (__instance.Get(ModEntry.Instance.Poison_Status.Status) > 0)
       {

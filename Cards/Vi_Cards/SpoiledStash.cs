@@ -30,6 +30,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
         case Upgrade.None:
           break;
         case Upgrade.A:
+          data.cost = 0;
           break;
         case Upgrade.B:
           data.exhaust = true;
@@ -49,12 +50,13 @@ namespace NukeDragon.TeamSnakemouth.Cards
             {
               targetPlayer = true,
               healAmount = 1,
+              canRunAfterKill = true,
             },
             new AStatus()
             {
               targetPlayer = true,
               status = ModEntry.Instance.Poison_Status.Status,
-              statusAmount = 3,
+              statusAmount = 2,
             }
                 };
           actions = cardActionList1;
@@ -66,6 +68,7 @@ namespace NukeDragon.TeamSnakemouth.Cards
             {
               targetPlayer = true,
               healAmount = 1,
+              canRunAfterKill = true,
             },
             new AStatus()
             {
@@ -83,12 +86,13 @@ namespace NukeDragon.TeamSnakemouth.Cards
             {
               targetPlayer = true,
               healAmount = 2,
+              canRunAfterKill = true,
             },
             new AStatus()
             {
               targetPlayer = true,
               status = ModEntry.Instance.Poison_Status.Status,
-              statusAmount = 4,
+              statusAmount = 3,
             }
                 };
           actions = cardActionList3;

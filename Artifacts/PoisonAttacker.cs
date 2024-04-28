@@ -42,5 +42,7 @@ namespace NukeDragon.TeamSnakemouth
       Deck? owner = this.AssignedDeck;
       return deck == owner ? 2 : 0;
     }
+
+    public override List<Tooltip>? GetExtraTooltips() => StatusMeta.GetTooltips(ModEntry.Instance.Poison_Status.Status, 1);
   }
 }

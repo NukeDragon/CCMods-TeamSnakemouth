@@ -44,23 +44,16 @@ namespace NukeDragon.TeamSnakemouth.Cards
         case Upgrade.None:
           List<CardAction> cardActionList1 = new List<CardAction>()
                 {
-            ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 2
-                      ),
-                      action: new AAttack()
+            new ATPCostAction()
+            {
+              cost = 2,
+              action = new AAttack()
                       {
                         targetPlayer = false,
                         damage = GetDmg(s, 2),
                         whoDidThis = this.GetMeta().deck
                       }
-                    ),
+            },
             new AStatus()
             {
               targetPlayer = true,
@@ -74,23 +67,16 @@ namespace NukeDragon.TeamSnakemouth.Cards
         case Upgrade.A:
           List<CardAction> cardActionList2 = new List<CardAction>()
           {
-            ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 3
-                      ),
-                      action: new AAttack()
+           new ATPCostAction()
+            {
+              cost = 3,
+              action = new AAttack()
                       {
                         targetPlayer = false,
                         damage = GetDmg(s, 2),
                         whoDidThis = this.GetMeta().deck
                       }
-                    ),
+            },
             new AStatus()
             {
               targetPlayer = true,
@@ -104,23 +90,16 @@ namespace NukeDragon.TeamSnakemouth.Cards
         case Upgrade.B:
           List<CardAction> cardActionList3 = new List<CardAction>()
           {
-            ModEntry.Instance.KokoroApi.ActionCosts.Make(
-                    cost: ModEntry.Instance.KokoroApi.ActionCosts.Cost(
-                        resource: ModEntry.Instance.KokoroApi.ActionCosts.StatusResource(
-                          status: ModEntry.Instance.TP_Status.Status,
-                          target: IKokoroApi.IActionCostApi.StatusResourceTarget.Player,
-                         costSatisfiedIcon: ModEntry.Instance.TPCost.Sprite,
-                         costUnsatisfiedIcon: ModEntry.Instance.TPCostOff.Sprite
-                        ),
-                        amount: 1
-                      ),
-                      action: new AAttack()
+            new ATPCostAction()
+            {
+              cost = 1,
+              action = new AAttack()
                       {
                         targetPlayer = false,
                         damage = GetDmg(s, 2),
                         whoDidThis = this.GetMeta().deck
                       }
-                    ),
+            },
             new AStatus()
             {
               targetPlayer = true,

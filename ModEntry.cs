@@ -11,12 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MGColor = Microsoft.Xna.Framework.Color;
 
-/* In the Cobalt Core modding community it is common for namespaces to be <Author>.<ModName>
- * This is helpful to know at a glance what mod we're looking at, and who made it */
 namespace NukeDragon.TeamSnakemouth;
 
-/* ModEntry is the base for our mod. Others like to name it Manifest, and some like to name it <ModName>
- * Notice the ': SimpleMod'. This means ModEntry is a subclass (child) of the superclass SimpleMod (parent). This is help us use Nickel's functions more easily! */
 public sealed class ModEntry : SimpleMod
 {
   internal static ModEntry Instance { get; private set; } = null!;
@@ -24,10 +20,13 @@ public sealed class ModEntry : SimpleMod
   internal ILocaleBoundNonNullLocalizationProvider<IReadOnlyList<string>> Localizations { get; }
 
   internal Harmony Harmony { get; }
+  internal HookManager<ISnakemouthHook> HookManager { get; }
   internal IKokoroApi KokoroApi { get; }
 
   internal ISpriteEntry TPCost { get; }
   internal ISpriteEntry TPCostOff { get; }
+  internal ISpriteEntry FiveTPCost { get; }
+  internal ISpriteEntry FiveTPCostOff { get; }
 
   internal ISpriteEntry ExplorersPermitTPSprite { get; }
   internal ISpriteEntry ExplorersPermitSprite { get; }
@@ -45,20 +44,26 @@ public sealed class ModEntry : SimpleMod
   internal ISpriteEntry FreezeResistanceSprite { get; }
   internal ISpriteEntry PoisonNeedlesSprite { get; }
   internal ISpriteEntry TPSaverSprite { get; }
+  internal ISpriteEntry AntlionJawsSprite { get; }
+  internal ISpriteEntry DefenseExchangeSprite { get; }
 
   internal IStatusEntry TP_Status { get; }
   internal IStatusEntry Frost_Status { get; }
   internal IStatusEntry Poison_Status { get; }
-  internal IStatusEntry Charge_Status { get; }
   internal IStatusEntry Taunted_Status { get; }
   internal IStatusEntry Concentration_Status { get; }
-  internal ISpriteEntry Frozen_Modifier { get; }
+  internal IStatusEntry Permafrost_Status { get; }
+  internal ISpriteEntry FrozenModifierSprite { get; }
 
   internal ISpriteEntry Icicle_Sprite { get; }
   internal ISpriteEntry Icicle_Icon { get; }
 
   internal Dictionary<Deck, IStatusEntry> Inspired_Status_Dictionary { get; }
   internal ISpriteEntry InspirationTemplate {  get; }
+  internal Dictionary<Deck, IStatusEntry> Charged_Status_Dictionary { get;  }
+  internal ISpriteEntry ChargedTemplate { get; }
+
+  internal ISpriteEntry ChargeTeamActionSprite { get; }
 
   internal ISpriteEntry DefaultCardArt { get; }
 
@@ -104,6 +109,7 @@ public sealed class ModEntry : SimpleMod
   internal ISpriteEntry Vi_Unamused_2 { get; }
   internal ISpriteEntry Vi_Unamused_3 { get; }
   internal ISpriteEntry Vi_Unamused_4 { get; }
+  internal ICharacterEntry Vi_Char {  get; }
   internal IDeckEntry Vi_Deck { get; }
 
   internal ISpriteEntry Leif_CardFrame { get; }
@@ -130,6 +136,7 @@ public sealed class ModEntry : SimpleMod
   internal ISpriteEntry Leif_Ready_1 { get; }
   internal ISpriteEntry Leif_Ready_2 { get; }
   internal ISpriteEntry Leif_Ready_3 { get; }
+  internal ICharacterEntry Leif_Char { get; }
   internal IDeckEntry Leif_Deck { get; }
 
   internal ISpriteEntry Kabbu_CardFrame { get; }
@@ -152,6 +159,10 @@ public sealed class ModEntry : SimpleMod
   internal ISpriteEntry Kabbu_Explains_1 { get; }
   internal ISpriteEntry Kabbu_Explains_2 { get; }
   internal ISpriteEntry Kabbu_Explains_3 { get; }
+  internal ISpriteEntry Kabbu_Panic_0 { get; }
+  internal ISpriteEntry Kabbu_Panic_1 { get; }
+  internal ISpriteEntry Kabbu_Panic_2 { get; }
+  internal ISpriteEntry Kabbu_Panic_3 { get; }
   internal ISpriteEntry Kabbu_Sad_0 { get; }
   internal ISpriteEntry Kabbu_Sad_1 { get; }
   internal ISpriteEntry Kabbu_Sad_2 { get; }
@@ -160,6 +171,7 @@ public sealed class ModEntry : SimpleMod
   internal ISpriteEntry Kabbu_Thinking_1 { get; }
   internal ISpriteEntry Kabbu_Thinking_2 { get; }
   internal ISpriteEntry Kabbu_Thinking_3 { get; }
+  internal ICharacterEntry Kabbu_Char { get; }
   internal IDeckEntry Kabbu_Deck { get; }
 
   public PDamMod frozen = (PDamMod)195;
@@ -174,7 +186,16 @@ public sealed class ModEntry : SimpleMod
     typeof(CrisbeeDonut),
     typeof(SpoiledStash),
     typeof(PoisonPincer),
-    typeof(PoisonBomb)
+    typeof(PoisonBomb),
+    typeof(CycloneBarrage),
+    typeof(TangyCarpaccio),
+    typeof(MiracleShake),
+    typeof(PoisonDart),
+    typeof(PrepareDarts),
+    typeof(HardCharge),
+    typeof(OverextendedBlast),
+    typeof(VenomBurst),
+    typeof(HurricaneBlast)
   ];
   internal static IReadOnlyList<Type> Leif_StarterCard_Types { get; } = [
     typeof(IcicleShot),
@@ -186,7 +207,14 @@ public sealed class ModEntry : SimpleMod
     typeof(MagicFocus),
     typeof(Concentrate),
     typeof(Icicle),
-    typeof(IceRain)
+    typeof(IceRain),
+    typeof(Rejuvenate),
+    typeof(FrostEjection),
+    typeof(Permafrost),
+    typeof(BubbleShield),
+    typeof(Energize),
+    typeof(ChargeUp),
+    typeof(TeamCharge)
   ];
   internal static IReadOnlyList<Type> Kabbu_StarterCard_Types { get; } = [
     typeof(PiercingBlow),
@@ -198,7 +226,15 @@ public sealed class ModEntry : SimpleMod
     typeof(BraceSelf),
     typeof(RecoveryShot),
     typeof(Sturdy),
-    typeof(PepTalk)
+    typeof(PepTalk),
+    typeof(ExperienceShot),
+    typeof(HeavyBlow),
+    typeof(DeepTaunt),
+    typeof(PebbleToss),
+    typeof(BoulderToss),
+    typeof(Barricade),
+    typeof(DashThrough),
+    typeof(TeamPlan)
   ];
 
   internal static IEnumerable<Type> Snakemouth_AllCard_Types
@@ -224,9 +260,9 @@ public sealed class ModEntry : SimpleMod
   ];
   internal static IReadOnlyList<Type> Kabbu_Artifact_Types { get; } = [
    typeof(TardigradeShield),
-    typeof(Prayer),
    typeof(Reflection),
-    typeof(Meditation)
+    typeof(AntlionJaws),
+    typeof(DefenseExchange)
 ];
   internal static IEnumerable<Type> Snakemouth_AllArtifact_Types
       => Snakemouth_Artifact_Types.Concat(Snakemouth_Starter_Artifact_Types).Concat(Kabbu_Artifact_Types).Concat(Leif_Artifact_Types).Concat(Vi_Artifact_Types);
@@ -236,24 +272,24 @@ public sealed class ModEntry : SimpleMod
     Instance = this;
     Harmony = new(package.Manifest.UniqueName);
     KokoroApi = helper.ModRegistry.GetApi<IKokoroApi>("Shockah.Kokoro")!;
+    HookManager = new();
 
-    QueensPermitBlacklist.ApplyPatches(Harmony);
-    CharacterBabbleChange.ApplyPatches(Harmony);
-    MapExitTPRefill.ApplyPatches(Harmony);
+    ArtifactBlacklist.ApplyPatches(Harmony);
+    CharacterBabblePatch.ApplyPatches(Harmony);
+    MapExitPatches.ApplyPatches(Harmony);
     FrostManager.ApplyPatches(Harmony);
-    FrozenRenderTranspiler.ApplyPatches(Harmony);
-    FrozenDamageTranspiler.ApplyPatches(Harmony);
-    FrozenIntentStunTranspiler.ApplyPatches(Harmony);
+    FrozenManager.ApplyPatches(Harmony);;
     AAttackPatches.ApplyPatches(Harmony);
+    CardPatches.ApplyPatches(Harmony);
     BeforeAfterTurnPatch.ApplyPatches(Harmony);
     PoisonManager.ApplyPatches(Harmony);
     ChargeManager.ApplyPatches(Harmony);
-    PDamModOverride2Patch.ApplyPatches(Harmony);
+    PDamModPatches.ApplyPatches(Harmony);
     MGPatches.ApplyPatches(Harmony);
     IceMissileManager.ApplyPatches(Harmony);
-    CustomTTGlossary.ApplyPatches(Harmony);
     _ = new FlashFreezeTrigger();
     _ = new InspirationManager();
+    _ = new ChargeManager();
 
     this.AnyLocalizations = new JsonLocalizationProvider(
         tokenExtractor: new SimpleLocalizationTokenExtractor(),
@@ -265,7 +301,11 @@ public sealed class ModEntry : SimpleMod
 
     TPCost = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/TPCost.png"));
     TPCostOff = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/TPCostOff.png"));
+    FiveTPCost = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/5TPCost.png"));
+    FiveTPCostOff = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/5TPCostOff.png"));
     InspirationTemplate = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/InspiredTemplate.png"));
+    ChargedTemplate = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/ChargeTemplate.png"));
+    ChargeTeamActionSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/actionicons/chargeteam_icon.png"));
     ExplorersPermitTPSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/ExplorerPermitTP.png"));
     ExplorersPermitSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/ExplorerPermit.png"));
     QueensPermitTPSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/QueensPermitTP.png"));
@@ -282,7 +322,9 @@ public sealed class ModEntry : SimpleMod
     FreezeResistanceSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/FreezeResistance.png"));
     PoisonNeedlesSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/PoisonNeedles.png"));
     TPSaverSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/TPSaver.png"));
-    Frozen_Modifier = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/modifiers/frozen_modifier_icon.png"));
+    AntlionJawsSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/AntlionJaws.png"));
+    DefenseExchangeSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/artifacts/DefenseExchange.png"));
+    FrozenModifierSprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/modifiers/frozen_modifier_icon.png"));
     Icicle_Sprite = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/drones/missile_ice.png"));
     Icicle_Icon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/actionicons/missile_ice.png"));
     DefaultCardArt = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/default_cardbackground.png"));
@@ -372,6 +414,10 @@ public sealed class ModEntry : SimpleMod
     Kabbu_Explains_1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_explains_1.png"));
     Kabbu_Explains_2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_explains_2.png"));
     Kabbu_Explains_3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_explains_3.png"));
+    Kabbu_Panic_0 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_panic_0.png"));
+    Kabbu_Panic_1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_panic_1.png"));
+    Kabbu_Panic_2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_panic_2.png"));
+    Kabbu_Panic_3 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_panic_3.png"));
     Kabbu_Sad_0 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_sad_0.png"));
     Kabbu_Sad_1 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_sad_1.png"));
     Kabbu_Sad_2 = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/characters/kabbu/kabbu_sad_2.png"));
@@ -397,7 +443,6 @@ public sealed class ModEntry : SimpleMod
       {
         icon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/TP.png")).Sprite,
         color = new("ffffff"),
-        isGood = false
       },
       Name = this.AnyLocalizations.Bind(["status", "TP", "name"]).Localize,
       Description = this.AnyLocalizations.Bind(["status", "TP", "description"]).Localize
@@ -408,7 +453,6 @@ public sealed class ModEntry : SimpleMod
       {
         icon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/Frost.png")).Sprite,
         color = new("c6f1ff"),
-        isGood = false
       },
       Name = this.AnyLocalizations.Bind(["status", "Frost", "name"]).Localize,
       Description = this.AnyLocalizations.Bind(["status", "Frost", "description"]).Localize
@@ -419,21 +463,9 @@ public sealed class ModEntry : SimpleMod
       {
         icon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/Poison.png")).Sprite,
         color = new("6a458f"),
-        isGood = false
       },
       Name = this.AnyLocalizations.Bind(["status", "Poison", "name"]).Localize,
       Description = this.AnyLocalizations.Bind(["status", "Poison", "description"]).Localize
-    });
-    Charge_Status = helper.Content.Statuses.RegisterStatus("Charge", new()
-    {
-      Definition = new()
-      {
-        icon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/Charge.png")).Sprite,
-        color = new("309327"),
-        isGood = true
-      },
-      Name = this.AnyLocalizations.Bind(["status", "Charge", "name"]).Localize,
-      Description = this.AnyLocalizations.Bind(["status", "Charge", "description"]).Localize
     });
     Taunted_Status = helper.Content.Statuses.RegisterStatus("Taunted_Status", new()
     {
@@ -441,35 +473,43 @@ public sealed class ModEntry : SimpleMod
       {
         icon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/Taunted.png")).Sprite,
         color = new("dc1f1f"),
-        isGood = false
       },
       Name = this.AnyLocalizations.Bind(["status", "Taunted", "name"]).Localize,
       Description = this.AnyLocalizations.Bind(["status", "Taunted", "description"]).Localize
     });
-    Concentration_Status = helper.Content.Statuses.RegisterStatus("Concentrationmmmmnbfyure", new()
+    Concentration_Status = helper.Content.Statuses.RegisterStatus("Concentration", new()
     {
       Definition = new()
       {
         icon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/Concentration.png")).Sprite,
         color = new("df7126"),
-        isGood = true,
       },
       Name = this.AnyLocalizations.Bind(["status", "Concentration", "name"]).Localize,
       Description = this.AnyLocalizations.Bind(["status", "Concentration", "description"]).Localize
     });
+    Permafrost_Status = helper.Content.Statuses.RegisterStatus("Permafrost", new()
+    {
+      Definition = new()
+      {
+        icon = Helper.Content.Sprites.RegisterSprite(package.PackageRoot.GetRelativeFile("assets/icons/statuses/Permafrost.png")).Sprite,
+        color = new("76ade5"),
+      },
+      Name = this.AnyLocalizations.Bind(["status", "Permafrost", "name"]).Localize,
+      Description = this.AnyLocalizations.Bind(["status", "Permafrost", "description"]).Localize
+    });
 
     Inspired_Status_Dictionary = new Dictionary<Deck, IStatusEntry>();
+    Charged_Status_Dictionary = new Dictionary<Deck, IStatusEntry>();
     helper.Events.OnModLoadPhaseFinished += (_, phase) =>
     {
-      Dictionary<Deck, IStatusEntry> tempdictionary = new Dictionary<Deck, IStatusEntry>();
       foreach (Deck deck in NewRunOptions.allChars)
       {
         DeckDef meta = DB.decks[deck];
         var charname = Loc.T($"char.{deck.Key()}");
         Color color = meta.color;
-        Texture2D texture = InspirationTemplate.ObtainTexture();
-        var data = new MGColor[texture.Width * texture.Height];
-        texture.GetData(data);
+        Texture2D textureInspired = InspirationTemplate.ObtainTexture();
+        var data = new MGColor[textureInspired.Width * textureInspired.Height];
+        textureInspired.GetData(data);
         for (var i = 0; i < data.Length; i++)
          data[i] = new MGColor(
            (float)(data[i].R / 255.0 * color.r),
@@ -477,7 +517,7 @@ public sealed class ModEntry : SimpleMod
            (float)(data[i].B / 255.0 * color.b),
            (float)(data[i].A / 255.0 * color.a)
            );
-        var texture2 = new Texture2D(MG.inst.GraphicsDevice, texture.Width, texture.Height);
+        var texture2 = new Texture2D(MG.inst.GraphicsDevice, textureInspired.Width, textureInspired.Height);
         texture2.SetData(data);
         var sprite = helper.Content.Sprites.RegisterSprite(() => texture2);
         IStatusEntry entry = helper.Content.Statuses.RegisterStatus($"{charname}IsInspired", new()
@@ -497,6 +537,36 @@ public sealed class ModEntry : SimpleMod
           }).Localize,
         });
         Inspired_Status_Dictionary.Add(deck, entry);
+        Texture2D textureCharge = ChargedTemplate.ObtainTexture();
+        var data2 = new MGColor[textureCharge.Width * textureCharge.Height];
+        textureCharge.GetData(data2);
+        for (var i = 0; i < data2.Length; i++)
+          data2[i] = new MGColor(
+            (float)(data2[i].R / 255.0 * color.r),
+            (float)(data2[i].G / 255.0 * color.g),
+            (float)(data2[i].B / 255.0 * color.b),
+            (float)(data2[i].A / 255.0 * color.a)
+            );
+        var textureCharged2 = new Texture2D(MG.inst.GraphicsDevice, textureCharge.Width, textureCharge.Height);
+        textureCharged2.SetData(data2);
+        var sprite2 = helper.Content.Sprites.RegisterSprite(() => textureCharged2);
+        IStatusEntry entry2 = helper.Content.Statuses.RegisterStatus($"{charname}Charge", new()
+        {
+          Definition = new()
+          {
+            icon = sprite2.Sprite,
+            color = color,
+          },
+          Name = this.AnyLocalizations.Bind(["status", "Charge", "name"], new
+          {
+            name = charname
+          }).Localize,
+          Description = this.AnyLocalizations.Bind(["status", "Charge", "description"], new
+          {
+            name = charname
+          }).Localize,
+        });
+        Charged_Status_Dictionary.Add(deck, entry2);
       }
     };
     helper.Events.OnModLoadPhaseFinished -= Events_OnModLoadPhaseFinished;
@@ -533,7 +603,7 @@ public sealed class ModEntry : SimpleMod
       BorderSprite = Leif_CardFrame.Sprite,
       Name = this.AnyLocalizations.Bind(["character", "Leif", "name"]).Localize,
     });
-    Helper.Content.Characters.RegisterCharacter("Vi", new CharacterConfiguration()
+    Vi_Char = Helper.Content.Characters.RegisterCharacter("Vi", new CharacterConfiguration()
     {
       Deck = Vi_Deck.Deck,
       Starters = new StarterDeck() { cards = new List<Card> { new TornadoBarrage(), new PoisonSting() }, artifacts = new List<Artifact> { new ExplorersPermit() } },
@@ -562,7 +632,7 @@ public sealed class ModEntry : SimpleMod
         }
       }
     });
-    Helper.Content.Characters.RegisterCharacter("Kabbu", new CharacterConfiguration()
+    Kabbu_Char = Helper.Content.Characters.RegisterCharacter("Kabbu", new CharacterConfiguration()
     {
       Deck = Kabbu_Deck.Deck,
       Starters = new StarterDeck() { cards = new List<Card> { new PiercingBlow(), new Taunt() }, artifacts = new List<Artifact> { new ExplorersPermit() } },
@@ -590,7 +660,7 @@ public sealed class ModEntry : SimpleMod
         }
       }
     });
-    Helper.Content.Characters.RegisterCharacter("Leif", new CharacterConfiguration()
+    Leif_Char = Helper.Content.Characters.RegisterCharacter("Leif", new CharacterConfiguration()
     {
       Deck = Leif_Deck.Deck,
       Starters = new StarterDeck() { cards = new List<Card> { new IcicleShot(), new Defrost() }, artifacts = new List<Artifact> { new ExplorersPermit() } },
@@ -901,6 +971,18 @@ public sealed class ModEntry : SimpleMod
                 Kabbu_Thinking_1.Sprite,
                 Kabbu_Thinking_2.Sprite,
                 Kabbu_Thinking_3.Sprite
+        }
+    });
+    Helper.Content.Characters.RegisterCharacterAnimation("kabbu_panic", new CharacterAnimationConfiguration()
+    {
+      Deck = Kabbu_Deck.Deck,
+      LoopTag = "panic",
+      Frames = new[]
+        {
+                Kabbu_Panic_0.Sprite,
+                Kabbu_Panic_1.Sprite,
+                Kabbu_Panic_2.Sprite,
+                Kabbu_Panic_3.Sprite
         }
     });
 

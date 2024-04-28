@@ -25,7 +25,7 @@ namespace NukeDragon.TeamSnakemouth
       DB.story.GetNode("GrandmaShop")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
       {
         who = vi,
-        Text = "Free Donuts!",
+        Text = "Free donuts!",
         loopTag = "neutral",
       });
       DB.story.GetNode("GrandmaShop")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
@@ -69,6 +69,7 @@ namespace NukeDragon.TeamSnakemouth
           }
         ]
       };
+      /*
       DB.story.all[$"Vi_Intro"] = new() {
         once = true,
         type = NodeType.@event,
@@ -327,6 +328,7 @@ namespace NukeDragon.TeamSnakemouth
           }
         ]
       };
+      */
       DB.story.all[$"ChoiceCardRewardOfYourColorChoice_{kabbu}"] = new()
       {
         type = NodeType.@event,
@@ -374,12 +376,25 @@ namespace NukeDragon.TeamSnakemouth
         allPresent = [leif],
         bg = "BGBootSequence",
         lines = [
-        new CustomSay()
+          new CustomSay()
+          {
+            who = leif,
+            Text = "We had never considered doing that. Thanks.",
+            loopTag = "neutral"
+          },
+          new CustomSay()
         {
-          who = leif,
-          Text = "I had never considered doing that before. Thanks.",
-          loopTag = "neutral"
+          who = "void",
+          Text = "You are harder to teach than the rest.",
+          loopTag = "neutral",
+          flipped = true
         },
+          new CustomSay()
+          {
+            who = leif,
+            Text = "Should we take that as a compliment or an insult?",
+            loopTag = "neutral"
+          },
           new CustomSay()
           {
             who = "comp",
@@ -402,7 +417,7 @@ namespace NukeDragon.TeamSnakemouth
       DB.story.GetNode("AbandonedShipyard")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
       {
         who = vi,
-        Text = "That has to mean there is some monster with a bounty on it out here.",
+        Text = "That has to mean there is some big monster out here!",
         loopTag = "neutral"
       });
       DB.story.GetNode("AbandonedShipyard_Repaired")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
@@ -420,7 +435,7 @@ namespace NukeDragon.TeamSnakemouth
       DB.story.GetNode("AbandonedShipyard_Repaired")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
       {
         who = leif,
-        Text = "How anticlimactic. I was expecting something to happen.",
+        Text = "How anticlimactic. We were expecting something to happen.",
         loopTag = "neutral"
       });
       DB.story.GetNode("CrystallizedFriendEvent")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
@@ -514,7 +529,7 @@ namespace NukeDragon.TeamSnakemouth
       DB.story.GetNode("CrystallizedFriendEvent")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
       {
         who = leif,
-        Text = "I do like the cryosleep.",
+        Text = "We do like the cryosleep.",
         loopTag = "thinking"
       });
       DB.story.all[$"CrystallizedFriendEvent_{leif}"] = new()
@@ -555,6 +570,353 @@ namespace NukeDragon.TeamSnakemouth
           }
         ]
       };
+      DB.story.all[$"ShopkeeperInfinite_{kabbu}_Multi_0"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [kabbu],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Welcome!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = kabbu,
+            Text = "Greetings!",
+            loopTag = "explaining",
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{kabbu}_Multi_1"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [kabbu],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Heya!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = kabbu,
+            Text = "What a cozy little shop!",
+            loopTag = "thinking",
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{vi}_Multi_0"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [vi],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Hello!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = vi,
+            Text = "Hi!",
+            loopTag = "neutral",
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{vi}_Multi_1"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [vi],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Howdy!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = vi,
+            Text = "What are your prices?",
+            loopTag = "unamused",
+          },
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Uh? Free!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = vi,
+            Text = "Wow!",
+            loopTag = "happy",
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{leif}_Multi_0"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [leif],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = leif,
+            Text = "What's up?",
+            loopTag = "neutral"
+          },
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "There is no up, we're in space!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = leif,
+            Text = "Then how are you sitting down?",
+            loopTag = "neutral"
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.all[$"ShopkeeperInfinite_{leif}_Multi_1"] = new()
+      {
+        type = NodeType.@event,
+        lookup = ["shopBefore"],
+        allPresent = [leif],
+        bg = "BGShop",
+        lines = [
+          new CustomSay()
+          {
+            who = "nerd",
+            Text = "Greetings!",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = leif,
+            Text = "Right back at you.",
+            loopTag = "neutral"
+          },
+          new Jump()
+          {
+            key = "NewShop"
+          }
+        ]
+      };
+      DB.story.GetNode("DraculaTime")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = kabbu,
+        Text = "Have we met before?",
+        loopTag = "neutral"
+      });
+      DB.story.GetNode("DraculaTime")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = vi,
+        Text = "You seem like a weirdo.",
+        loopTag = "squint"
+      });
+      DB.story.GetNode("DraculaTime")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = leif,
+        Text = "Should we recognize you?",
+        loopTag = "thinking"
+      });
+      DB.story.GetNode("LoseCharacterCard")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = kabbu,
+        Text = "Team! Do not look down!!!",
+        loopTag = "panic"
+      });
+      DB.story.GetNode("LoseCharacterCard")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = vi,
+        Text = "A what now?",
+        loopTag = "sad"
+      });
+      DB.story.GetNode("LoseCharacterCard")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = leif,
+        Text = "We really think that trying to escape would be a good idea.",
+        loopTag = "hurt"
+      });
+      DB.story.GetNode("LoseCharacterCard_No")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = kabbu,
+        Text = "I thought that was the end for us...",
+        loopTag = "sad"
+      });
+      DB.story.GetNode("LoseCharacterCard_No")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = vi,
+        Text = "A little confused, did I miss something?",
+        loopTag = "sad"
+      });
+      DB.story.GetNode("LoseCharacterCard_No")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = leif,
+        Text = "We would like to have a word with the pilot of this ship.",
+        loopTag = "squint"
+      });
+      DB.story.GetNode("Sasha_2_Multi_2")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = kabbu,
+        Text = "You know, I could fancy a game of sports.",
+        loopTag = "thinking"
+      });
+      DB.story.GetNode("Sasha_2_Multi_2")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = vi,
+        Text = "That means there are prizes, right?",
+        loopTag = "happy"
+      });
+      DB.story.GetNode("Sasha_2_Multi_2")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = leif,
+        Text = "Sports.",
+        loopTag = "neutral"
+      });
+      DB.story.all[$"LoseCharacterCard_{kabbu}"] = new()
+      {
+        type = NodeType.@event,
+        oncePerRun = true,
+        allPresent = [kabbu],
+        bg = "BGSupernova",
+        lines = [
+          new CustomSay()
+          {
+            who = kabbu,
+            Text = "That was horrifying!",
+            loopTag = "angy"
+          },
+          new CustomSay()
+          {
+            who = kabbu,
+            Text = "May I suggest we steer clear of those from now on?",
+            loopTag = "explaining"
+          }
+        ]
+      };
+      DB.story.all[$"LoseCharacterCard_{vi}"] = new()
+      {
+        type = NodeType.@event,
+        oncePerRun = true,
+        allPresent = [vi],
+        bg = "BGSupernova",
+        lines = [
+          new CustomSay()
+          {
+            who = vi,
+            Text = "What just happened?",
+            loopTag = "sad"
+          },
+          new CustomSay()
+          {
+            who = "comp",
+            Text = "If we hadn't escaped right then, this ship and all of us would have been compressed into that infinitely dense point.",
+            loopTag = "neutral",
+            flipped = true
+          },
+          new CustomSay()
+          {
+            who = vi,
+            Text = "...",
+            loopTag = "shocked"
+          }
+        ]
+      };
+      DB.story.all[$"LoseCharacterCard_{leif}"] = new()
+      {
+        type = NodeType.@event,
+        oncePerRun = true,
+        allPresent = [leif],
+        bg = "BGSupernova",
+        lines = [
+          new CustomSay()
+          {
+            who = leif,
+            Text = "While we cannot deny that we were terrified, we also would be lying if we said we weren't fascinated.",
+            loopTag = "neutral"
+          }
+        ]
+      };
+      DB.story.GetNode("Soggins_Infinite")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = kabbu,
+        Text = "Team, we should help out!",
+        loopTag = "explaining"
+      });
+      DB.story.GetNode("Soggins_Infinite")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = vi,
+        Text = "You better have a reward ready, or I am just gonna blow you up anyways.",
+        loopTag = "unamused"
+      });
+      DB.story.GetNode("Soggins_Infinite")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = leif,
+        Text = "How do you mess it up that badly?",
+        loopTag = "neutral"
+      });
+      DB.story.GetNode("SogginsEscape_1")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = kabbu,
+        Text = "Well I suppose that's fine... but not even a thank you?",
+        loopTag = "sad"
+      });
+      DB.story.GetNode("SogginsEscape_1")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = vi,
+        Text = "WOOOW. I HOPE YOU ARE PREPARED FOR A REAL SMACKDOWN BECAUSE YOU-",
+        loopTag = "angy"
+      });
+      DB.story.GetNode("SogginsEscape_1")?.lines.OfType<SaySwitch>().FirstOrDefault()?.lines.Insert(0, new CustomSay()
+      {
+        who = leif,
+        Text = "Let's just blow him up.",
+        loopTag = "ready"
+      });
     }
   }
 }
